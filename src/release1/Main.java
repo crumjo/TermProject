@@ -8,6 +8,7 @@ public class Main {
 		
 		
 		//how to call the simon says gui
+		//mainScreen.mainScreen = new mainScreen();
 		Simon.simon = new Simon();
 		
 	}
