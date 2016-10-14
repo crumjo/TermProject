@@ -7,9 +7,9 @@ public class Main {
 		//testing
 		
 		
-		//how to call the simon says gui
+		//how to call the mainScreen to call the games
 		mainScreen.mainScreen = new mainScreen();
-		Simon.simon = new Simon();
+		//Simon.simon = new Simon();
 		
 	}
 }
