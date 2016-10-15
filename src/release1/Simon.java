@@ -30,10 +30,11 @@ public class Simon implements ActionListener, MouseListener
 	public ArrayList<Integer> sequence;
 	public Random random;
 	private boolean gameOver;
+	private JFrame frame;
 
 	public Simon()
 	{
-		JFrame frame = new JFrame("Simon Says");
+		frame = new JFrame("Simon Says");
 		Timer timer = new Timer(20, this);
 
 		frame.setSize(WIDTH + 8, HEIGHT + 30);
@@ -43,15 +44,23 @@ public class Simon implements ActionListener, MouseListener
 		frame.add(renderer);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		int start = JOptionPane.showConfirmDialog(null, "Ready?", "Start", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+		//int start = JOptionPane.showConfirmDialog(null, "Ready?", "Start", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 		frame.setVisible(true);
-		if(start == JOptionPane.YES_OPTION)
-		{
-			start();
-			timer.start();
-		}		
+		start();
+		timer.start();
+		
+		
+		//if(start == JOptionPane.YES_OPTION)
+	//	{
+		//	start();
+		//	timer.start();
+	//	}
 	}
 
+	public void frameDispose(){
+		frame.dispose();
+	}
+	
 	public void start()
 	{
 		random = new Random();
@@ -107,6 +116,8 @@ public class Simon implements ActionListener, MouseListener
 		renderer.repaint();
 	}
 
+	
+	
 	public void paint(Graphics2D g)
 	{
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -225,7 +236,7 @@ public class Simon implements ActionListener, MouseListener
 				gameOver = false;
 			}
 			else{
-				//go back to main screen
+				this.frameDispose();
 			}
 			
 		}
