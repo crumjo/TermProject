@@ -159,10 +159,11 @@ public class GuessWho {
 				if(e.getSource() == answers[0][i]){
 					//take there answer compare to victims info 
 					//if true add to cue if false tell them
-					if ((answers[0][i].equals(Victim.getEyes()) || 
-							(answers[0][i].equals(Victim.getHair())) ||
-						answers[0][i].equals(Victim.getHairColor()))) {
-						System.out.print("It Worked!");
+					System.out.println(answers[0][i].getText());
+					if (answers[0][i].getText().equals(Victim.getEyes()) || 
+							answers[0][i].getText().equals(Victim.getHair()) ||
+							answers[0][i].getText().equals(Victim.getHairColor())) {
+						System.out.print("It Worked!!!!!!!!!!!!!!");
 					}
 					guesswho.frameDispose();
 				}
