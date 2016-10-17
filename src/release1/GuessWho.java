@@ -32,7 +32,7 @@ public class GuessWho {
 	Charcter Pual = new Charcter("Pual", "Mid", "Blue", "Blonde");
 	Charcter Sally = new Charcter("Sally", "Long", "Brown", "Black");
 	Charcter Sue = new Charcter("Sue", "Long", "Green", "Red");
-	
+	//codeninja was here
 	//adds the charcters to the list of charcters
 	Charcters.add(Patton);
 	Charcters.add(Josh);
