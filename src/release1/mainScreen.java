@@ -65,8 +65,7 @@ public class mainScreen extends JPanel {
 				Simon.simon = new Simon();
 			}
 			if (e.getSource() == GuessButton) {
-				JOptionPane.showMessageDialog(frame,
-					    "Guess who is coming soon!");
+				GuessWho.guesswho = new GuessWho();
 			}
 			if (e.getSource() == MazeButton) {
 				JOptionPane.showMessageDialog(frame,
