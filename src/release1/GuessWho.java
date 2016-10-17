@@ -118,9 +118,9 @@ public class GuessWho {
 	}
 	
 	private void BuildQuestion(int input){
-		
+		frame = new JFrame();
 		ArrayList<String> temp = Questions.get(input).getAnswers();
-		answers = new JButton[1][20];
+		answers = new JButton[1][4];
 		ButtonListener listener = new ButtonListener();
 		final int WIDTH = 800;
 		final int HEIGHT = 800;
