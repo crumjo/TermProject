@@ -47,8 +47,8 @@ public class GuessWho {
 	Eyes = new Question("Is the color of their eyes ",
 			"Blue Brown Green");
 	Questions.add(Eyes);
-	HairL = new Question("Is the color of their eyes ",
-			"Brown Green Blue");
+	HairL = new Question("Is the length of their hair ",
+			"Short Medium Long");
 	Questions.add(HairL);
 	System.out.println(Eyes.getAnswers());
 	
@@ -107,7 +107,7 @@ public class GuessWho {
 		
 		for(int i = 0; i < Questions.size(); i++){
 			quest[0][i] = new JButton();
-			System.out.println(Questions.get(i));
+			System.out.println(Questions.get(i).getQuestion() +" " + i);
 			quest[0][i].setText(Questions.get(i).getQuestion());
 			quest[0][i].addActionListener(listener);
 			frame.add(quest[0][i]);
