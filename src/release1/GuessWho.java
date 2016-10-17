@@ -159,6 +159,7 @@ public class GuessWho {
 					//if true add to cue if false tell them
 					guesswho.frameDispose();
 					//codeninja 2013 was here
+					//or was he
 				}
 				
 			}
