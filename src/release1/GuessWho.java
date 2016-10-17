@@ -158,6 +158,7 @@ public class GuessWho {
 					//take there answer compare to victims info 
 					//if true add to cue if false tell them
 					guesswho.frameDispose();
+					//codeninja 2013 was here
 				}
 				
 			}
