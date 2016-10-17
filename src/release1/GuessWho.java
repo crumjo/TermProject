@@ -1,6 +1,8 @@
 package release1;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.*;
 import javax.swing.*;
 
@@ -9,12 +11,15 @@ public class GuessWho {
 	public static GuessWho guesswho;
 	private JFrame frame;
 	private JLabel names;
-	private JComboBox quest;
+	private JButton[][] quest;
+	private JButton[][] answers;
 	private ArrayList<Charcter> Charcters;
 	private ArrayList<Question> Questions;
 	private Charcter Victim;
-
-
+	private Question HairC;
+	private Question HairL;
+	private Question Eyes;
+	
 	public GuessWho(){
 	
 	//arraylist for charcters to try to guess
@@ -36,17 +41,18 @@ public class GuessWho {
 	Charcters.add(Sue);
 	
 	//builds the questions and the answers
-	Question HairC = new Question("Is the color of their hair ",
+	HairC = new Question("Is the color of their hair ",
 			"Red Black Blonde Brown");
-	Question Eyes = new Question("Is the color of their eyes ",
-			"Blue Brown Green");
-	Question HairL = new Question("Is the color of their eyes ",
-			"Blue Brown Green");
-	
-	//adds the questions to the array of questions
 	Questions.add(HairC);
+	Eyes = new Question("Is the color of their eyes ",
+			"Blue Brown Green");
 	Questions.add(Eyes);
+	HairL = new Question("Is the color of their eyes ",
+			"Brown Green Blue");
 	Questions.add(HairL);
+	System.out.println(Eyes.getAnswers());
+	
+	
 	
 	//add random selector to pick who you must guess
 	Random selector = new Random();
@@ -59,7 +65,8 @@ public class GuessWho {
 	
 	Victim = Charcters.get(temp);
     
-	this.BuildFirst();
+	//this.BuildFirst();
+	this.BuildSecond();
 	}
 	
 	
@@ -72,9 +79,8 @@ public class GuessWho {
 		frame.setSize(WIDTH + 8, HEIGHT + 30);
 
 		frame.setResizable(false);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLayout(new GridLayout(0, 5));
-		
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setLayout(new GridLayout(1, 5));
 		
 		for(int i = 0; i < Charcters.size(); i++){
 			names = new JLabel(" ");
@@ -86,20 +92,64 @@ public class GuessWho {
 	}
 	
 	private void BuildSecond(){
+		
 		frame = new JFrame("Guess Who");
-		names = new JLabel(" ");
+		quest = new JButton[1][3];
+		ButtonListener listener = new ButtonListener();
 		final int WIDTH = 800;
 		final int HEIGHT = 800;
 		
 		frame.setSize(WIDTH + 8, HEIGHT + 30);
 
 		frame.setResizable(false);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLayout(new GridLayout(0, 5));
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setLayout(new GridLayout(0,1));
 		
-		//should i flip to arrays over arraylist??
-		//quest = new JComboBox(Questions);
+		for(int i = 0; i < Questions.size(); i++){
+			quest[0][i] = new JButton();
+			System.out.println(Questions.get(i));
+			quest[0][i].setText(Questions.get(i).getQuestion());
+			quest[0][i].addActionListener(listener);
+			frame.add(quest[0][i]);
+		}
+		
 		
 		frame.setVisible(true);
+	}
+	
+	private void BuildQuestion(int input){
+		
+		ArrayList<String> temp = Questions.get(input).getAnswers();
+		answers = new JButton[1][5];
+		ButtonListener listener = new ButtonListener();
+		final int WIDTH = 800;
+		final int HEIGHT = 800;
+		
+		frame.setSize(WIDTH + 8, HEIGHT + 30);
+
+		frame.setResizable(false);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setLayout(new GridLayout(0,1));
+		
+		for(int i = 0; i < temp.size(); i++){
+			answers[0][i] = new JButton();
+			answers[0][i].setText(temp.get(i));
+			answers[0][i].addActionListener(listener);
+			frame.add(answers[0][i]);
+		}
+		
+		
+		frame.setVisible(true);
+	}
+	
+	private class ButtonListener implements ActionListener {
+
+		public void actionPerformed(ActionEvent e) {
+			for(int i = 0; i < 2; i++){
+			if(e.getSource() == quest[0][i]){
+				guesswho.BuildQuestion(i);
+			}
+			}
+		}
 	}
 }
