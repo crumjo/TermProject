@@ -20,19 +20,19 @@ public class GuessWho {
 	private Question HairL;
 	private Question Eyes;
 	
-	public GuessWho(){
+	public GuessWho() {
 	
 	//arraylist for charcters to try to guess
 	Charcters = new ArrayList<Charcter>();
 	Questions = new ArrayList<Question>();
 	
-	//build the charcters
+	//build the characters
 	Charcter Patton = new Charcter();
 	Charcter Josh = new Charcter("Josh", "Short", "Brown", "Brown");
 	Charcter Pual = new Charcter("Pual", "Mid", "Blue", "Blonde");
 	Charcter Sally = new Charcter("Sally", "Long", "Brown", "Black");
 	Charcter Sue = new Charcter("Sue", "Long", "Green", "Red");
-	//codeninja was here 2013
+
 	//adds the charcters to the list of charcters
 	Charcters.add(Patton);
 	Charcters.add(Josh);
@@ -56,14 +56,16 @@ public class GuessWho {
 	
 	//add random selector to pick who you must guess
 	Random selector = new Random();
-	int temp = selector.nextInt() % Charcters.size();
+	int temp = selector.nextInt(Charcters.size());
+	this.Victim = this.Charcters.get(temp);
+	System.out.println(this.Victim.getName());
 	
 	//makes sure the number picked is positive
-	if(temp < 0){
-		temp = temp * -1;
-	}
+//	if(temp < 0) {
+//		temp = temp * -1;
+//	}
 	
-	Victim = Charcters.get(temp);
+//	Victim = Charcters.get(temp);
     
 	//this.BuildFirst();
 	this.BuildSecond();
@@ -121,7 +123,7 @@ public class GuessWho {
 	}
 	
 	private void BuildQuestion(int input){
-		frame = new JFrame();
+		frame = new JFrame(Questions.get(input).getQuestion());
 		ArrayList<String> temp = Questions.get(input).getAnswers();
 		answers = new JButton[1][4];
 		ButtonListener listener = new ButtonListener();
@@ -157,9 +159,12 @@ public class GuessWho {
 				if(e.getSource() == answers[0][i]){
 					//take there answer compare to victims info 
 					//if true add to cue if false tell them
+					if ((answers[0][i].equals(Victim.getEyes()) || 
+							(answers[0][i].equals(Victim.getHair())) ||
+						answers[0][i].equals(Victim.getHairColor()))) {
+						System.out.print("It Worked!");
+					}
 					guesswho.frameDispose();
-					//codeninja 2016 was here
-					//or was he
 				}
 				
 			}
