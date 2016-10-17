@@ -42,7 +42,7 @@ public class Simon implements ActionListener, MouseListener
 		frame.addMouseListener(this);
 		frame.setResizable(false);
 		frame.add(renderer);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		//int start = JOptionPane.showConfirmDialog(null, "Ready?", "Start", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 		frame.setVisible(true);
