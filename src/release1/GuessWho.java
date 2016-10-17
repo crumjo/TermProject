@@ -69,6 +69,9 @@ public class GuessWho {
 	this.BuildSecond();
 	}
 	
+	public void frameDispose(){
+		frame.dispose();
+	}
 	
 	private void BuildFirst(){
 		//builds the screen to look at the charcters for 30 secs
@@ -149,6 +152,14 @@ public class GuessWho {
 			if(e.getSource() == quest[0][i]){
 				guesswho.BuildQuestion(i);
 			}
+			}
+			for (int i = 0; i < 4; i++) {
+				if(e.getSource() == answers[0][i]){
+					//take there answer compare to victims info 
+					//if true add to cue if false tell them
+					guesswho.frameDispose();
+				}
+				
 			}
 		}
 	}
