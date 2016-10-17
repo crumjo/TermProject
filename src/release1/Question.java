@@ -5,7 +5,7 @@ import java.util.*;
 public class Question {
 
 	public String question;
-	protected static ArrayList<String> answers =new ArrayList<String>();
+	protected ArrayList<String> answers = new ArrayList<String>();
 	public Question(){
 		question = "Do you like cheese?";
 		//answers = new ArrayList<String>();
@@ -39,9 +39,6 @@ public class Question {
 		return answers;
 	}
 	
-	public static String getAnswer(int temp) {
-		return answers.get(temp);
-	}
 	
 	public static void Main(String Args[]){
 		Question bob = new Question("hi", "dicks buttz stop");

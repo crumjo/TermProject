@@ -120,7 +120,7 @@ public class GuessWho {
 	private void BuildQuestion(int input){
 		
 		ArrayList<String> temp = Questions.get(input).getAnswers();
-		answers = new JButton[1][5];
+		answers = new JButton[1][20];
 		ButtonListener listener = new ButtonListener();
 		final int WIDTH = 800;
 		final int HEIGHT = 800;
