@@ -116,6 +116,7 @@ public class GuessWho {
 			quest[0][i].setText(Questions.get(i).getQuestion());
 			quest[0][i].addActionListener(listener);
 			frame.add(quest[0][i]);
+			System.out.println(quest[0][i].toString());
 		}
 		
 		
@@ -155,7 +156,8 @@ public class GuessWho {
 				guesswho.BuildQuestion(i);
 			}
 			}
-			for (int i = 0; i < 4; i++) {
+			for (int i = 0; i <= 2; i++) {
+				System.out.println("i is " + i);
 				if(e.getSource() == answers[0][i]){
 					//take there answer compare to victims info 
 					//if true add to cue if false tell them
