@@ -137,8 +137,8 @@ public class GuessWho {
 			quest[0][i].setText(Questions.get(i).getQuestion());
 			quest[0][i].addActionListener(listener);
 			this.SecondBuild.add(quest[0][i]);
-			System.out.println(quest[0][i].toString());
 		}
+		
 		quest[0][3] = new JButton();
 		quest[0][3].setText("Would you like to guess?");
 		quest[0][3].addActionListener(listener);
@@ -282,12 +282,6 @@ public class GuessWho {
 					guesswho.frameDispose();
 					guesswho.BuildSecond();
 				}
-
-
-				//				System.out.println("\n-----------------------------\n");
-				//				for (int j = 0; j < guesswho.getInstance().size(); j++) {
-				//					System.out.println(guesswho.getInstance().get(j));
-				//				}
 			}
 		}
 	}
