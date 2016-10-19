@@ -65,10 +65,11 @@ public class GuessWho {
 		Questions.add(HairL);	
 
 		//add random selector to pick who you must guess
-		Random selector = new Random();
-		int temp = selector.nextInt(Charcters.size());
-		this.Victim = this.Charcters.get(temp);
-		System.out.println(this.Victim.getName());
+		//		Random selector = new Random();
+		//		int temp = selector.nextInt(Charcters.size());
+		//		this.Victim = this.Charcters.get(temp);
+		//		System.out.println(this.Victim.getName());
+		this.selectVictim();
 
 		this.BuildFirst();
 		Timer screenTimer = new Timer();
@@ -79,7 +80,7 @@ public class GuessWho {
 				frame.dispose();
 				guesswho.BuildSecond();
 			}
-		}, 300);
+		}, 3000);
 
 	}
 
@@ -205,6 +206,13 @@ public class GuessWho {
 		frame.setVisible(true);
 	}
 
+	private void selectVictim() {
+		Random selector = new Random();
+		int temp = selector.nextInt(Charcters.size());
+		this.Victim = this.Charcters.get(temp);
+		System.out.println(this.Victim.getName());
+	}
+
 	private void tryAgainMessage() {
 		JOptionPane.showMessageDialog(null, "Try Another Answer.");
 	}
@@ -220,12 +228,25 @@ public class GuessWho {
 	}
 
 	private void winner() {
-		int gameover = JOptionPane.showConfirmDialog(null, "Want to Play Again?", "Game Over", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+		int gameover = JOptionPane.showConfirmDialog(null, "YOU WIN! Want to Play Again?", "Game Over", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 		if(gameover == JOptionPane.YES_OPTION){
 			GuessWho temp = new GuessWho();
+			//this.selectVictim();
 		}
 		else{
 			this.frameDispose();
+			this.SecondBuild.dispose();
+		}
+	}
+	
+	private void loser() {
+		int gameover = JOptionPane.showConfirmDialog(null, "YOU LOSE! Want to Play Again?", "Game Over", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+		if(gameover == JOptionPane.YES_OPTION){
+			this.selectVictim();
+		}
+		else{
+			this.frameDispose();
+			this.SecondBuild.dispose();
 		}
 	}
 
@@ -245,8 +266,10 @@ public class GuessWho {
 				guesswho.BuildGuess();
 				currentQuestion = quest[0][3].getText();
 			}
-
-			for (int i = 0; i < 4; i++) {
+			
+			int x = (currentQuestion == nameQ) ? 5 : 4; 
+			
+			for (int i = 0; i < x; i++) {
 				if(e.getSource() == answers[0][i]) {
 
 					//take there answer compare to victims info 
@@ -287,8 +310,10 @@ public class GuessWho {
 					if (currentQuestion == nameQ) {
 						if(answers[0][i].getText().equals(guesswho.Victim.getName())){
 							guesswho.winner();
+							return;
 						}else{
-							guesswho.tryAgainMessage();
+							guesswho.loser();
+							return;
 						}
 					}
 
