@@ -4,12 +4,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
+import java.util.Timer;
+
 import javax.swing.*;
 
 public class GuessWho {
 
 	public static GuessWho guesswho;
 	private JFrame frame;
+	private JFrame SecondBuild;
 	private JLabel names;
 	private JButton[][] quest;
 	private JButton[][] answers;
@@ -64,17 +67,18 @@ public class GuessWho {
 		int temp = selector.nextInt(Charcters.size());
 		this.Victim = this.Charcters.get(temp);
 		System.out.println(this.Victim.getName());
+		
+		this.BuildFirst();
+		Timer screenTimer = new Timer();
+		screenTimer.schedule(new TimerTask() {
 
-		//makes sure the number picked is positive
-		//	if(temp < 0) {
-		//		temp = temp * -1;
-		//	}
-
-		//	Victim = Charcters.get(temp);
-
-		//this.BuildFirst();
-
-		this.BuildSecond();
+			@Override
+			public void run() {
+				frame.dispose();
+				guesswho.BuildSecond();
+			}
+		}, 30000);
+		
 	}
 
 	private ArrayList<String> getInstance() {
@@ -83,7 +87,7 @@ public class GuessWho {
 		}
 		return UserAnswers;
 	}
-	
+
 	private void appendAnswers(String data) {
 		this.Answers += data;
 	}
@@ -115,35 +119,35 @@ public class GuessWho {
 
 	private void BuildSecond(){
 
-		frame = new JFrame("Guess Who");
+		this.SecondBuild = new JFrame("Guess Who");
 		quest = new JButton[1][4];
 		ButtonListener listener = new ButtonListener();
 		final int WIDTH = 800;
 		final int HEIGHT = 800;
 
-		frame.setSize(WIDTH + 8, HEIGHT + 30);
+		this.SecondBuild.setSize(WIDTH + 8, HEIGHT + 30);
 
-		frame.setResizable(false);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.setLayout(new GridLayout(0,1));
+		this.SecondBuild.setResizable(false);
+		this.SecondBuild.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.SecondBuild.setLayout(new GridLayout(0,1));
 
 		for(int i = 0; i < Questions.size(); i++){
 			quest[0][i] = new JButton();
 			System.out.println(Questions.get(i).getQuestion() +" " + i);
 			quest[0][i].setText(Questions.get(i).getQuestion());
 			quest[0][i].addActionListener(listener);
-			frame.add(quest[0][i]);
+			this.SecondBuild.add(quest[0][i]);
 			System.out.println(quest[0][i].toString());
 		}
 		quest[0][3] = new JButton();
 		quest[0][3].setText("Would you like to guess?");
 		quest[0][3].addActionListener(listener);
-		frame.add(quest[0][3]);
-		
-//		JLabel Answers = new JLabel("Answers :" + this.Answers);
-//		frame.add(Answers);
-		
-		frame.setVisible(true);
+		this.SecondBuild.add(quest[0][3]);
+
+		JLabel Answers = new JLabel("Answers :" + this.Answers);
+		this.SecondBuild.add(Answers);
+
+		this.SecondBuild.setVisible(true);
 	}
 
 	private void BuildQuestion(int input){
@@ -166,7 +170,7 @@ public class GuessWho {
 			answers[0][i].addActionListener(listener);
 			frame.add(answers[0][i]);
 		}
-		
+
 		JLabel Answers = new JLabel("Answers : " + this.Answers);
 		frame.add(Answers);
 
@@ -192,7 +196,7 @@ public class GuessWho {
 			answers[0][i].addActionListener(listener);
 			frame.add(answers[0][i]);
 		}
-		
+
 		JLabel Answers = new JLabel("Answers : " + this.Answers);
 		frame.add(Answers);
 
@@ -207,25 +211,32 @@ public class GuessWho {
 		String temp = String.join(" , ", this.Answers);
 		return temp;
 	}
+	
+	private void TimerListener(ActionEvent e) {
+		this.frameDispose();
+		this.BuildSecond();
+	}
 
 	private class ButtonListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
-			for(int i = 0; i < 2; i++){
+			for(int i = 0; i < 3; i++){
 				if(e.getSource() == quest[0][i]) {
+					guesswho.SecondBuild.dispose();
 					guesswho.BuildQuestion(i);
 					currentQuestion = quest[0][i].getText();
 				}
 			}
 
 			if(e.getSource() == quest[0][3]){
+				guesswho.SecondBuild.dispose();
 				guesswho.BuildGuess();
 				currentQuestion = quest[0][3].getText();
 			}
-			
+
 			for (int i = 0; i < 4; i++) {
 				if(e.getSource() == answers[0][i]) {
-					
+
 					//take there answer compare to victims info 
 					//if true add to cue if false tell them
 					if (currentQuestion == hairColorQ) {
@@ -246,7 +257,6 @@ public class GuessWho {
 							if (!guesswho.getInstance().contains(Victim.getEyes())) {
 								guesswho.getInstance().add(Victim.getEyes());
 								guesswho.appendAnswers("Eye Color: " + Victim.getEyes() + ". ");
-
 							}
 						} else {
 							guesswho.tryAgainMessage();
@@ -261,7 +271,7 @@ public class GuessWho {
 								guesswho.appendAnswers("Hair Length: " + Victim.getHair() + ". ");
 							}
 						}
-					if (currentQuestion.replace(" ", "").equals("Guess what charcter you think it is!")) {
+						if (currentQuestion.replace(" ", "").equals("Guess what charcter you think it is!")) {
 							if(answers[0][i].getText().equals(guesswho.Victim.getName())){
 								System.out.println("you win");
 							}else{
@@ -270,13 +280,14 @@ public class GuessWho {
 						}
 					}
 					guesswho.frameDispose();
+					guesswho.BuildSecond();
 				}
-				
-				
-//				System.out.println("\n-----------------------------\n");
-//				for (int j = 0; j < guesswho.getInstance().size(); j++) {
-//					System.out.println(guesswho.getInstance().get(j));
-//				}
+
+
+				//				System.out.println("\n-----------------------------\n");
+				//				for (int j = 0; j < guesswho.getInstance().size(); j++) {
+				//					System.out.println(guesswho.getInstance().get(j));
+				//				}
 			}
 		}
 	}
