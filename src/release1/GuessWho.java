@@ -230,23 +230,25 @@ public class GuessWho {
 	private void winner() {
 		int gameover = JOptionPane.showConfirmDialog(null, "YOU WIN! Want to Play Again?", "Game Over", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 		if(gameover == JOptionPane.YES_OPTION){
+			this.frameDispose();
 			GuessWho temp = new GuessWho();
-			//this.selectVictim();
 		}
 		else{
 			this.frameDispose();
 			this.SecondBuild.dispose();
+			mainScreen.mainScreen = new mainScreen();
 		}
 	}
 	
 	private void loser() {
 		int gameover = JOptionPane.showConfirmDialog(null, "YOU LOSE! Want to Play Again?", "Game Over", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 		if(gameover == JOptionPane.YES_OPTION){
-			this.selectVictim();
-		}
-		else{
+			this.frameDispose();
+			GuessWho temp = new GuessWho();
+	} else {
 			this.frameDispose();
 			this.SecondBuild.dispose();
+			mainScreen.mainScreen = new mainScreen();
 		}
 	}
 

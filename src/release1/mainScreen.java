@@ -63,9 +63,11 @@ public class mainScreen extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == SimonButton) {
 				Simon.simon = new Simon();
+				frame.dispose();
 			}
 			if (e.getSource() == GuessButton) {
 				GuessWho.guesswho = new GuessWho();
+				frame.dispose();
 			}
 			if (e.getSource() == MazeButton) {
 				JOptionPane.showMessageDialog(frame,
