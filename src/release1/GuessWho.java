@@ -26,8 +26,10 @@ public class GuessWho {
 	private String hairColorQ = "Is the color of their hair ";
 	private String eyeColorQ = "Is the color of their eyes ";
 	private String hairLengthQ = "Is the length of their hair ";
+	private String nameQ = "Would you like to guess?";
 	private String currentQuestion;
 	private String Answers = "";
+	private Boolean gameOver;
 
 	public GuessWho() {
 
@@ -67,7 +69,7 @@ public class GuessWho {
 		int temp = selector.nextInt(Charcters.size());
 		this.Victim = this.Charcters.get(temp);
 		System.out.println(this.Victim.getName());
-		
+
 		this.BuildFirst();
 		Timer screenTimer = new Timer();
 		screenTimer.schedule(new TimerTask() {
@@ -77,8 +79,8 @@ public class GuessWho {
 				frame.dispose();
 				guesswho.BuildSecond();
 			}
-		}, 30000);
-		
+		}, 300);
+
 	}
 
 	private ArrayList<String> getInstance() {
@@ -138,7 +140,7 @@ public class GuessWho {
 			quest[0][i].addActionListener(listener);
 			this.SecondBuild.add(quest[0][i]);
 		}
-		
+
 		quest[0][3] = new JButton();
 		quest[0][3].setText("Would you like to guess?");
 		quest[0][3].addActionListener(listener);
@@ -211,10 +213,20 @@ public class GuessWho {
 		String temp = String.join(" , ", this.Answers);
 		return temp;
 	}
-	
+
 	private void TimerListener(ActionEvent e) {
 		this.frameDispose();
 		this.BuildSecond();
+	}
+
+	private void winner() {
+		int gameover = JOptionPane.showConfirmDialog(null, "Want to Play Again?", "Game Over", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+		if(gameover == JOptionPane.YES_OPTION){
+			GuessWho temp = new GuessWho();
+		}
+		else{
+			this.frameDispose();
+		}
 	}
 
 	private class ButtonListener implements ActionListener {
@@ -271,14 +283,15 @@ public class GuessWho {
 								guesswho.appendAnswers("Hair Length: " + Victim.getHair() + ". ");
 							}
 						}
-						if (currentQuestion.replace(" ", "").equals("Guess what charcter you think it is!")) {
-							if(answers[0][i].getText().equals(guesswho.Victim.getName())){
-								System.out.println("you win");
-							}else{
-								guesswho.tryAgainMessage();
-							}
+					}
+					if (currentQuestion == nameQ) {
+						if(answers[0][i].getText().equals(guesswho.Victim.getName())){
+							guesswho.winner();
+						}else{
+							guesswho.tryAgainMessage();
 						}
 					}
+
 					guesswho.frameDispose();
 					guesswho.BuildSecond();
 				}
