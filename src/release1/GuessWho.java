@@ -29,7 +29,7 @@ public class GuessWho {
 	private String nameQ = "Would you like to guess?";
 	private String currentQuestion;
 	private String Answers = "";
-	private Boolean gameOver;
+	private ArrayList<Boolean> filters;
 
 	public GuessWho() {
 
@@ -62,7 +62,13 @@ public class GuessWho {
 
 		HairL = new Question("Is the length of their hair ",
 				"Short Medium Long");
-		Questions.add(HairL);	
+		Questions.add(HairL);
+
+		//build the filters
+		this.filters = new ArrayList<Boolean>();
+		this.filters.add(true);
+		this.filters.add(true);
+		this.filters.add(true);
 
 		//add random selector to pick who you must guess
 		//		Random selector = new Random();
@@ -239,13 +245,13 @@ public class GuessWho {
 			mainScreen.mainScreen = new mainScreen();
 		}
 	}
-	
+
 	private void loser() {
 		int gameover = JOptionPane.showConfirmDialog(null, "YOU LOSE! Want to Play Again?", "Game Over", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 		if(gameover == JOptionPane.YES_OPTION){
 			this.frameDispose();
 			GuessWho temp = new GuessWho();
-	} else {
+		} else {
 			this.frameDispose();
 			this.SecondBuild.dispose();
 			mainScreen.mainScreen = new mainScreen();
@@ -257,9 +263,13 @@ public class GuessWho {
 		public void actionPerformed(ActionEvent e) {
 			for(int i = 0; i < 3; i++){
 				if(e.getSource() == quest[0][i]) {
-					guesswho.SecondBuild.dispose();
-					guesswho.BuildQuestion(i);
-					currentQuestion = quest[0][i].getText();
+					if (filters.get(i) == true) {
+						guesswho.SecondBuild.dispose();
+						guesswho.BuildQuestion(i);
+						currentQuestion = quest[0][i].getText();
+					} else {
+						JOptionPane.showMessageDialog(null, "You have already guessed this!");
+					}
 				}
 			}
 
@@ -268,9 +278,9 @@ public class GuessWho {
 				guesswho.BuildGuess();
 				currentQuestion = quest[0][3].getText();
 			}
-			
+
 			int x = (currentQuestion == nameQ) ? 5 : 4; 
-			
+
 			for (int i = 0; i < x; i++) {
 				if(e.getSource() == answers[0][i]) {
 
@@ -282,6 +292,7 @@ public class GuessWho {
 							if (!guesswho.getInstance().contains(Victim.getHairColor())) {
 								guesswho.getInstance().add(Victim.getHairColor());
 								guesswho.appendAnswers("Hair Color: " + Victim.getHairColor() + ". ");
+								filters.set(0, false);
 							}
 						} else {
 							guesswho.tryAgainMessage();
@@ -294,6 +305,7 @@ public class GuessWho {
 							if (!guesswho.getInstance().contains(Victim.getEyes())) {
 								guesswho.getInstance().add(Victim.getEyes());
 								guesswho.appendAnswers("Eye Color: " + Victim.getEyes() + ". ");
+								filters.set(1, false);
 							}
 						} else {
 							guesswho.tryAgainMessage();
@@ -306,7 +318,7 @@ public class GuessWho {
 							if (!guesswho.getInstance().contains(Victim.getHair())) {
 								guesswho.getInstance().add(Victim.getHair());
 								guesswho.appendAnswers("Hair Length: " + Victim.getHair() + ". ");
-							}
+								filters.set(2, false);							}
 						}
 					}
 					if (currentQuestion == nameQ) {
