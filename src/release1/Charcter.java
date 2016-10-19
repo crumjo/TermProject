@@ -9,7 +9,7 @@ public class Charcter {
 	
 	public Charcter(){
 		this.Name = "Patton";
-		this.Hair = "short";
+		this.Hair = "Short";
 		this.Eyes = "Blue";
 		this.HairColor = "Blonde";
 	}
