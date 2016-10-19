@@ -134,9 +134,9 @@ public class GuessWho {
 			quest[0][i].addActionListener(listener);
 			frame.add(quest[0][i]);
 		}
-		JLabel Answers = new JLabel("Answers :" + printList());
-		frame.add(Answers);
-
+//		JLabel Answers = new JLabel("Answers :" + this.Answers);
+//		frame.add(Answers);
+		
 		frame.setVisible(true);
 	}
 
@@ -160,6 +160,9 @@ public class GuessWho {
 			answers[0][i].addActionListener(listener);
 			frame.add(answers[0][i]);
 		}
+		
+		JLabel Answers = new JLabel("Answers : " + this.Answers);
+		frame.add(Answers);
 
 		frame.setVisible(true);
 	}
@@ -169,7 +172,7 @@ public class GuessWho {
 	}
 
 	private String printList() {
-		String temp = String.join(",", this.Answers);
+		String temp = String.join(" , ", this.Answers);
 		return temp;
 	}
 
@@ -192,8 +195,7 @@ public class GuessWho {
 							//System.out.println("Worked 1");
 							if (!guesswho.getInstance().contains(Victim.getHairColor())) {
 								guesswho.getInstance().add(Victim.getHairColor());
-								guesswho.appendAnswers(Victim.getHairColor());
-								System.out.println(guesswho.Answers);
+								guesswho.appendAnswers("Hair Color: " + Victim.getHairColor() + ". ");
 							}
 						} else {
 							guesswho.tryAgainMessage();
@@ -205,7 +207,8 @@ public class GuessWho {
 							//System.out.println("Worked 2");
 							if (!guesswho.getInstance().contains(Victim.getEyes())) {
 								guesswho.getInstance().add(Victim.getEyes());
-								guesswho.appendAnswers(Victim.getEyes());
+								guesswho.appendAnswers("Eye Color: " + Victim.getEyes() + ". ");
+
 							}
 						} else {
 							guesswho.tryAgainMessage();
@@ -217,7 +220,7 @@ public class GuessWho {
 							//System.out.println("Worked 3");
 							if (!guesswho.getInstance().contains(Victim.getHair())) {
 								guesswho.getInstance().add(Victim.getHair());
-								guesswho.appendAnswers(Victim.getHair());
+								guesswho.appendAnswers("Hair Length: " + Victim.getHair() + ". ");
 							}
 						} else {
 							guesswho.tryAgainMessage();
