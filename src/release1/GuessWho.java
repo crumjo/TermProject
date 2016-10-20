@@ -19,6 +19,7 @@ public class GuessWho {
   private ArrayList<Charcter> charcters;
   private ArrayList<Question> questions;
   private ArrayList<String> userAnswers;
+  private ArrayList<Boolean> filters;
   private Charcter victim;
   private Question hairC;
   private Question hairL;
@@ -29,7 +30,7 @@ public class GuessWho {
   private String nameQ = "Would you like to guess?";
   private String currentQuestion;
   private String enteredAnswers = "";
-  private ArrayList<Boolean> filters;
+
 
 
   public GuessWho() {
@@ -86,6 +87,7 @@ public class GuessWho {
 
   }
 
+
   private ArrayList<String> getInstance() {
     if (userAnswers == null) {
       userAnswers = new ArrayList<String>();
@@ -93,13 +95,16 @@ public class GuessWho {
     return userAnswers;
   }
 
+
   private void appendAnswers(String data) {
     this.enteredAnswers += data;
   }
 
-  public void frameDispose(){
+
+  public void frameDispose() {
     frame.dispose();
   }
+
 
   private void buildFirst() {
 
@@ -123,6 +128,7 @@ public class GuessWho {
     frame.setVisible(true);
   }
 
+
   private void buildSecond() {
 
     this.secondBuild = new JFrame("Guess Who");
@@ -139,7 +145,6 @@ public class GuessWho {
 
     for (int i = 0; i < questions.size(); i++) {
       quest[0][i] = new JButton();
-      System.out.println(questions.get(i).getQuestion() +" " + i);
       quest[0][i].setText(questions.get(i).getQuestion());
       quest[0][i].addActionListener(listener);
       this.secondBuild.add(quest[0][i]);
@@ -155,6 +160,7 @@ public class GuessWho {
     this.secondBuild.add(localAnswers);
     this.secondBuild.setVisible(true);
   }
+
 
   private void buildQuestion(int input) {
     frame = new JFrame(questions.get(input).getQuestion());
@@ -179,6 +185,7 @@ public class GuessWho {
 
     frame.setVisible(true);
   }
+
 
   private void buildGuess() {
     frame = new JFrame("Guess what charcter you think it is!");
@@ -207,6 +214,7 @@ public class GuessWho {
     frame.setVisible(true);
   }
 
+
   private void selectVictim() {
     Random selector = new Random();
     int temp = selector.nextInt(charcters.size());
@@ -214,9 +222,11 @@ public class GuessWho {
     System.out.println(this.victim.getName());
   }
 
+
   private void tryAgainMessage() {
     JOptionPane.showMessageDialog(null, "Try a different answer.");
   }
+
 
   private void winner() {
     int gameover = JOptionPane.showConfirmDialog(null, "YOU WIN! " 
@@ -232,6 +242,7 @@ public class GuessWho {
     }
   }
 
+
   private void loser() {
     int gameover = JOptionPane.showConfirmDialog(null, "YOU LOSE! "
         + "Want to Play Again?", "Game Over", JOptionPane.YES_NO_OPTION,
@@ -245,6 +256,7 @@ public class GuessWho {
       mainScreen.mainScreen = new mainScreen();
     }
   }
+
 
   private class ButtonListener implements ActionListener {
 
@@ -332,4 +344,5 @@ public class GuessWho {
       }
     }
   }
+
 }

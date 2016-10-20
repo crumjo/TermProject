@@ -2,38 +2,46 @@ package release1;
 
 public class Charcter {
 
-	private String Name;
-	private String Hair;
-	private String Eyes;
-	private String HairColor;
-	
-	public Charcter(){
-		this.Name = "Patton";
-		this.Hair = "Short";
-		this.Eyes = "Blue";
-		this.HairColor = "Blonde";
-	}
-	
-	public String getName() {
-		return Name;
-	}
+  private String name;
+  private String hair;
+  private String eyes;
+  private String hairColor;
+  
+  
 
-	public String getHair() {
-		return Hair;
-	}
+  public Charcter() {
+    this.name = "Patton";
+    this.hair = "Short";
+    this.eyes = "Blue";
+    this.hairColor = "Blonde";
+  }
+  
 
-	public String getEyes() {
-		return Eyes;
-	}
+  public String getName() {
+    return name;
+  }
+  
 
-	public String getHairColor() {
-		return HairColor;
-	}
+  public String getHair() {
+    return hair;
+  }
+  
 
-	public Charcter(String Name, String Hair, String Eyes, String HairColor){
-		this.Name = Name;
-		this.Hair = Hair;
-		this.Eyes = Eyes;
-		this.HairColor = HairColor;
-	}
+  public String getEyes() {
+    return eyes;
+  }
+  
+
+  public String getHairColor() {
+    return hairColor;
+  }
+  
+
+  public Charcter(String name, String hair, String eyes, 
+      String hairColor) {
+    this.name = name;
+    this.hair = hair;
+    this.eyes = eyes;
+    this.hairColor = hairColor;
+  }
 }
