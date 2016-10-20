@@ -3,9 +3,13 @@ package release1;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 import java.util.Timer;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class GuessWho {
@@ -52,6 +56,9 @@ public class GuessWho {
     charcters.add(Pual);
     charcters.add(Sally);
     charcters.add(Sue);
+
+    //create the pictures
+
 
     //builds the questions and the answers
     hairC = new Question("Is the color of their hair ",
@@ -113,7 +120,8 @@ public class GuessWho {
     final int WIDTH = 800;
     final int HEIGHT = 800;
 
-    frame.setSize(WIDTH + 8, HEIGHT + 30);
+
+    frame.setSize(WIDTH + 8, HEIGHT + 3);    
 
     frame.setResizable(false);
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -124,7 +132,9 @@ public class GuessWho {
       names.setText(charcters.get(i).getName());
       frame.add(names);
     }
-
+    
+    frame.add(new JLabel(new ImageIcon("JoshPic.png"))); //THIS DOESNT WORK!!!
+    frame.pack();
     frame.setVisible(true);
   }
 
