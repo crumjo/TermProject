@@ -10,6 +10,7 @@ import java.util.*;
 import java.util.Timer;
 
 import javax.imageio.ImageIO;
+import javax.print.DocFlavor.URL;
 import javax.swing.*;
 
 public class GuessWho {
@@ -90,7 +91,7 @@ public class GuessWho {
         frame.dispose();
         guesswho.buildSecond();
       }
-    }, 3000);
+    }, 30000);
 
   }
 
@@ -117,24 +118,29 @@ public class GuessWho {
 
     //builds the screen to look at the characters for 30 seconds.
     frame = new JFrame("Guess Who");
-    final int WIDTH = 800;
-    final int HEIGHT = 800;
+    final int WIDTH = 1000;
+    final int HEIGHT = 400;
 
 
     frame.setSize(WIDTH + 8, HEIGHT + 3);    
 
     frame.setResizable(false);
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    frame.setLayout(new GridLayout(1, 5));
+    frame.setLayout(new GridLayout(2, 5));
+    
+    frame.add(new JLabel(new ImageIcon("PattonPic.png")));
+    frame.add(new JLabel(new ImageIcon("JoshPic.png")));
+    frame.add(new JLabel(new ImageIcon("PaulPic.png")));
+    frame.add(new JLabel(new ImageIcon("SallyPic.png")));
+    frame.add(new JLabel(new ImageIcon("SuePic.png")));
 
     for (int i = 0; i < charcters.size(); i++) {
-      names = new JLabel(" ");
+      names = new JLabel(" ", JLabel.CENTER);
+      names.setVerticalAlignment(JLabel.TOP);
+      names.setFont(new Font("Serif", Font.BOLD, 40));
       names.setText(charcters.get(i).getName());
       frame.add(names);
     }
-    
-    frame.add(new JLabel(new ImageIcon("JoshPic.png"))); //THIS DOESNT WORK!!!
-    frame.pack();
     frame.setVisible(true);
   }
 
