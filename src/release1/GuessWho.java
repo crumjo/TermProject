@@ -256,7 +256,7 @@ public class GuessWho {
     } else {
       this.frameDispose();
       this.secondBuild.dispose();
-      mainScreen.mainScreen = new mainScreen();
+      MainScreen.mainScreen = new MainScreen();
     }
   }
 
@@ -269,7 +269,7 @@ public class GuessWho {
     } else {
       this.frameDispose();
       this.secondBuild.dispose();
-      mainScreen.mainScreen = new mainScreen();
+      MainScreen.mainScreen = new MainScreen();
     }
   }
 

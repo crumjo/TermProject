@@ -237,7 +237,7 @@ public class Simon implements ActionListener, MouseListener
 			}
 			else{
 				this.frameDispose();
-				mainScreen.mainScreen = new mainScreen();
+				MainScreen.mainScreen = new MainScreen();
 			}
 			
 		}
