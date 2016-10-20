@@ -29,11 +29,11 @@ public class GuessWho {
   private JLabel names;
   private JButton[][] quest;
   private JButton[][] answers;
-  private ArrayList<Charcter> charcters;
+  private ArrayList<Character> characters;
   private ArrayList<Question> questions;
   private ArrayList<String> userAnswers;
   private ArrayList<Boolean> filters;
-  private Charcter victim;
+  private Character victim;
   private Question hairC;
   private Question hairL;
   private Question eyes;
@@ -52,23 +52,23 @@ public class GuessWho {
   public GuessWho() {
 
     // ArrayList for characters to try to guess
-    charcters = new ArrayList<Charcter>();
+    characters = new ArrayList<Character>();
     questions = new ArrayList<Question>();
 
     // build the characters
 
-    Charcter patton = new Charcter();
-    Charcter josh = new Charcter("Josh", "Short", "Brown", "Brown");
-    Charcter pual = new Charcter("Pual", "Medium", "Blue", "Blonde");
-    Charcter sally = new Charcter("Sally", "Long", "Brown", "Black");
-    Charcter sue = new Charcter("Sue", "Long", "Green", "Red");
+    Character patton = new Character();
+    Character josh = new Character("Josh", "Short", "Brown", "Brown");
+    Character pual = new Character("Pual", "Medium", "Blue", "Blonde");
+    Character sally = new Character("Sally", "Long", "Brown", "Black");
+    Character sue = new Character("Sue", "Long", "Green", "Red");
 
     // adds the characters to the list of characters
-    charcters.add(patton);
-    charcters.add(josh);
-    charcters.add(pual);
-    charcters.add(sally);
-    charcters.add(sue);
+    characters.add(patton);
+    characters.add(josh);
+    characters.add(pual);
+    characters.add(sally);
+    characters.add(sue);
 
     // create the pictures
 
@@ -147,11 +147,11 @@ public class GuessWho {
     topPanel.add(new JLabel(new ImageIcon("SallyPic.png")));
     topPanel.add(new JLabel(new ImageIcon("SuePic.png")));
 
-    for (int i = 0; i < charcters.size(); i++) {
+    for (int i = 0; i < characters.size(); i++) {
       names = new JLabel(" ", JLabel.CENTER);
       names.setVerticalAlignment(JLabel.TOP);
       names.setFont(new Font("Serif", Font.BOLD, 40));
-      names.setText(charcters.get(i).getName());
+      names.setText(characters.get(i).getName());
       bottomPanel.add(names);
     }
     frame.add(topPanel);
@@ -213,8 +213,8 @@ public class GuessWho {
   }
 
   private void buildGuess() {
-    frame = new JFrame("Guess what charcter you think it is!");
-    answers = new JButton[1][charcters.size()];
+    frame = new JFrame("Guess what Character you think it is!");
+    answers = new JButton[1][characters.size()];
     ButtonListener listener = new ButtonListener();
 
     frame.setSize(width + 8, height + 30);
@@ -223,9 +223,9 @@ public class GuessWho {
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     frame.setLayout(new GridLayout(0, 1));
 
-    for (int i = 0; i < charcters.size(); i++) {
+    for (int i = 0; i < characters.size(); i++) {
       answers[0][i] = new JButton();
-      answers[0][i].setText(charcters.get(i).getName());
+      answers[0][i].setText(characters.get(i).getName());
       answers[0][i].addActionListener(listener);
       frame.add(answers[0][i]);
     }
@@ -238,8 +238,8 @@ public class GuessWho {
 
   private void selectVictim() {
     Random selector = new Random();
-    int temp = selector.nextInt(charcters.size());
-    this.victim = this.charcters.get(temp);
+    int temp = selector.nextInt(characters.size());
+    this.victim = this.characters.get(temp);
     System.out.println(this.victim.getName());
   }
 
