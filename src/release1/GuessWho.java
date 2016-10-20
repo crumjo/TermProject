@@ -118,29 +118,38 @@ public class GuessWho {
 
     //builds the screen to look at the characters for 30 seconds.
     frame = new JFrame("Guess Who");
+    JPanel topPanel = new JPanel();
+    JPanel bottomPanel = new JPanel();
+    
     final int WIDTH = 1000;
     final int HEIGHT = 400;
 
 
-    frame.setSize(WIDTH + 8, HEIGHT + 3);    
-
+    frame.setSize(WIDTH, HEIGHT); 
+    
     frame.setResizable(false);
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     frame.setLayout(new GridLayout(2, 5));
     
-    frame.add(new JLabel(new ImageIcon("PattonPic.png")));
-    frame.add(new JLabel(new ImageIcon("JoshPic.png")));
-    frame.add(new JLabel(new ImageIcon("PaulPic.png")));
-    frame.add(new JLabel(new ImageIcon("SallyPic.png")));
-    frame.add(new JLabel(new ImageIcon("SuePic.png")));
+    topPanel.setLayout(new GridLayout(1, 5));
+    bottomPanel.setLayout(new GridLayout(1, 5));
+    
+    topPanel.add(new JLabel(new ImageIcon("PattonPic.png")));
+    topPanel.add(new JLabel(new ImageIcon("JoshPic.png")));
+    topPanel.add(new JLabel(new ImageIcon("PaulPic.png")));
+    topPanel.add(new JLabel(new ImageIcon("SallyPic.png")));
+    topPanel.add(new JLabel(new ImageIcon("SuePic.png")));
 
     for (int i = 0; i < charcters.size(); i++) {
       names = new JLabel(" ", JLabel.CENTER);
       names.setVerticalAlignment(JLabel.TOP);
       names.setFont(new Font("Serif", Font.BOLD, 40));
       names.setText(charcters.get(i).getName());
-      frame.add(names);
+      bottomPanel.add(names);
     }
+    frame.add(topPanel);
+    frame.add(bottomPanel);
+    frame.pack();
     frame.setVisible(true);
   }
 
