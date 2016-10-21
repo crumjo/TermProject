@@ -22,7 +22,7 @@ import javax.swing.Timer;
  * 
  * 
  *         A Game of simon says.
- *****************************************************************/
+ *     ***********************************************************/
 public class Simon implements ActionListener, MouseListener {
 
   protected static Simon simon;
@@ -85,7 +85,7 @@ public class Simon implements ActionListener, MouseListener {
   }
 
   @Override
-  public void actionPerformed(ActionEvent e) {
+  public void actionPerformed(ActionEvent e1) {
     ticks++;
 
     if (ticks % 20 == 0) {
@@ -124,82 +124,82 @@ public class Simon implements ActionListener, MouseListener {
   /*****************************************************************
    * Creates the color wheel screen.
    * 
-   * @param g
+   * @param g1
    *****************************************************************/
-  public void paint(Graphics2D g) {
-    g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, 
+  public void paint(Graphics2D g1) {
+    g1.setRenderingHint(RenderingHints.KEY_ANTIALIASING, 
         RenderingHints.VALUE_ANTIALIAS_ON);
 
     if (flashed == 1) {
-      g.setColor(Color.GREEN);
+      g1.setColor(Color.GREEN);
     } else {
-      g.setColor(Color.GREEN.darker());
+      g1.setColor(Color.GREEN.darker());
     }
 
-    g.fillRect(0, 0, WIDTH / 2, HEIGHT / 2);
+    g1.fillRect(0, 0, WIDTH / 2, HEIGHT / 2);
 
     if (flashed == 2) {
-      g.setColor(Color.RED);
+      g1.setColor(Color.RED);
     } else {
-      g.setColor(Color.RED.darker());
+      g1.setColor(Color.RED.darker());
     }
 
-    g.fillRect(WIDTH / 2, 0, WIDTH / 2, HEIGHT / 2);
+    g1.fillRect(WIDTH / 2, 0, WIDTH / 2, HEIGHT / 2);
 
     if (flashed == 3) {
-      g.setColor(Color.ORANGE);
+      g1.setColor(Color.ORANGE);
     } else {
-      g.setColor(Color.ORANGE.darker());
+      g1.setColor(Color.ORANGE.darker());
     }
 
-    g.fillRect(0, HEIGHT / 2, WIDTH / 2, HEIGHT / 2);
+    g1.fillRect(0, HEIGHT / 2, WIDTH / 2, HEIGHT / 2);
 
     if (flashed == 4) {
-      g.setColor(Color.BLUE);
+      g1.setColor(Color.BLUE);
     } else {
-      g.setColor(Color.BLUE.darker());
+      g1.setColor(Color.BLUE.darker());
     }
 
-    g.fillRect(WIDTH / 2, HEIGHT / 2, WIDTH / 2, HEIGHT / 2);
+    g1.fillRect(WIDTH / 2, HEIGHT / 2, WIDTH / 2, HEIGHT / 2);
 
-    g.setColor(Color.BLACK);
-    g.setColor(Color.GRAY);
-    g.setStroke(new BasicStroke(200));
-    g.drawOval(-100, -100, WIDTH + 200, HEIGHT + 200);
+    g1.setColor(Color.BLACK);
+    g1.setColor(Color.GRAY);
+    g1.setStroke(new BasicStroke(200));
+    g1.drawOval(-100, -100, WIDTH + 200, HEIGHT + 200);
 
-    g.setColor(Color.BLACK);
-    g.setStroke(new BasicStroke(10));
-    g.drawOval(0, 0, WIDTH, HEIGHT);
+    g1.setColor(Color.BLACK);
+    g1.setStroke(new BasicStroke(10));
+    g1.drawOval(0, 0, WIDTH, HEIGHT);
 
-    g.setColor(Color.WHITE);
-    g.setFont(new Font("Arial", 1, 142));
+    g1.setColor(Color.WHITE);
+    g1.setFont(new Font("Arial", 1, 142));
 
     if (gameOver) {
-      g.drawString("Game Over", WIDTH / 2 - 400, HEIGHT / 2 + 42);
+      g1.drawString("Game Over", WIDTH / 2 - 400, HEIGHT / 2 + 42);
     } else {
-      g.drawString(index + "/" + sequence.size(), WIDTH / 2 - 100, HEIGHT / 2 + 42);
+      g1.drawString(index + "/" + sequence.size(), WIDTH / 2 - 100, HEIGHT / 2 + 42);
     }
   }
 
   @Override
-  public void mousePressed(MouseEvent e) {
-    int x = e.getX();
-    int y = e.getY();
+  public void mousePressed(MouseEvent e1) {
+    int x1 = e1.getX();
+    int y1 = e1.getY();
 
     if (!creatingSequence && !gameOver) {
-      if (x > 0 && x < WIDTH / 2 && y > 0 && y < HEIGHT / 2) {
+      if (x1 > 0 && x1 < WIDTH / 2 && y1 > 0 && y1 < HEIGHT / 2) {
         flashed = 1;
         ticks = 1;
-      } else if (x > WIDTH / 2 && x < WIDTH && y > 0 
-          && y < HEIGHT / 2) {
+      } else if (x1 > WIDTH / 2 && x1 < WIDTH && y1 > 0 
+          && y1 < HEIGHT / 2) {
         flashed = 2;
         ticks = 1;
-      } else if (x > 0 && x < WIDTH / 2 && y > HEIGHT / 2 
-          && y < HEIGHT) {
+      } else if (x1 > 0 && x1 < WIDTH / 2 && y1 > HEIGHT / 2 
+          && y1 < HEIGHT) {
         flashed = 3;
         ticks = 1;
-      } else if (x > WIDTH / 2 && x < WIDTH && y > HEIGHT / 2 
-          && y < HEIGHT) {
+      } else if (x1 > WIDTH / 2 && x1 < WIDTH && y1 > HEIGHT / 2 
+          && y1 < HEIGHT) {
         flashed = 4;
         ticks = 1;
       }
@@ -227,19 +227,19 @@ public class Simon implements ActionListener, MouseListener {
   }
 
   @Override
-  public void mouseClicked(MouseEvent e) {
+  public void mouseClicked(MouseEvent e1) {
   }
 
   @Override
-  public void mouseReleased(MouseEvent e) {
+  public void mouseReleased(MouseEvent e1) {
   }
 
   @Override
-  public void mouseEntered(MouseEvent e) {
+  public void mouseEntered(MouseEvent e1) {
   }
 
   @Override
-  public void mouseExited(MouseEvent e) {
+  public void mouseExited(MouseEvent e1) {
   }
 
 }

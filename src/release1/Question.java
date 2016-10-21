@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * 
  * 
  *         A Question class for guess who.
- *****************************************************************/
+ *     ***********************************************************/
 public class Question {
 
   // a string that holds the question
@@ -31,7 +31,7 @@ public class Question {
    * 
    * @param aquestion is the question being asked
    * @param ans a string being split into an arraylist for answers
-   *****************************************************************/
+   *     ***********************************************************/
   public Question(String aquestion, String ans) {
     this.question = aquestion;
     answers = new ArrayList<String>();
