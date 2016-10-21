@@ -1,11 +1,11 @@
 package release1;
 
-/******************************************************************************************
+/*****************************************************************
  * @author Patton Finley, Josh Crum, Pual Mcgee
  * 
  * 
  *         A Charcater class to be used in a game of guess who.
- *******************************************************************************************/
+ *****************************************************************/
 public class Character {
 
   //a string that represents the character name
@@ -39,7 +39,8 @@ public class Character {
    * @param hairColor
    *          the color of the hair of the character
    *****************************************************************/
-  public Character(String name, String hair, String eyes, String hairColor) {
+  public Character(String name, String hair, String eyes, 
+      String hairColor) {
     this.name = name;
     this.hair = hair;
     this.eyes = eyes;

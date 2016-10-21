@@ -2,12 +2,12 @@ package release1;
 
 import java.util.ArrayList;
 
-/******************************************************************************************
+/*****************************************************************
  * @author Patton Finley, Josh Crum, Pual Mcgee
  * 
  * 
  *         A Question class for guess who.
- *******************************************************************************************/
+ *****************************************************************/
 public class Question {
 
   // a string that holds the question
@@ -62,6 +62,5 @@ public class Question {
   public ArrayList<String> getAnswers() {
     return answers;
   }
-
  
 }

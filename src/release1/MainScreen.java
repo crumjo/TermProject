@@ -11,12 +11,12 @@ import javax.swing.JPanel;
 
 
 
-/******************************************************************************************
+/*****************************************************************
  * @author Patton Finley, Josh Crum, Pual Mcgee
  * 
  * 
  *         A Home Screen for mind games.
- *******************************************************************************************/
+ ****************************************************************/
 
 public class MainScreen extends JPanel {
 
@@ -34,7 +34,7 @@ public class MainScreen extends JPanel {
   private JButton typebutton;
 
   /*****************************************************************
-   * A mainScreen constructior used to build the main screen.
+   * A mainScreen constructor used to build the main screen.
    *****************************************************************/
   public MainScreen() {
 
@@ -104,7 +104,8 @@ public class MainScreen extends JPanel {
       }
       // checks speedtyping button
       if (response.getSource() == typebutton) {
-        JOptionPane.showMessageDialog(frame, "Speed typing is coming soon!");
+        JOptionPane.showMessageDialog(frame, "Speed typing is " 
+            + "coming soon!");
       }
     }
   }

@@ -15,12 +15,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-/******************************************************************************************
+/*****************************************************************
  * @author Patton Finley, Josh Crum, Pual Mcgee
  * 
  * 
  *         A Game of guess who.
- *******************************************************************************************/
+ *****************************************************************/
 public class GuessWho {
 
   public static GuessWho guesswho;
@@ -46,9 +46,9 @@ public class GuessWho {
   private final int width;
   private final int height;
 
-  /******************************************************************************************
+  /*****************************************************************
    * A Method that creates a game of guess who.
-   *******************************************************************************************/
+   *****************************************************************/
   public GuessWho() {
 
     // ArrayList for characters to try to guess
@@ -77,13 +77,16 @@ public class GuessWho {
     width = 800;
     height = 800;
     // builds the questions and the answers
-    hairC = new Question("Is the color of their hair ", "Red Black Blonde Brown");
+    hairC = new Question("Is the color of their hair ", 
+        "Red Black Blonde Brown");
     questions.add(hairC);
 
-    eyes = new Question("Is the color of their eyes ", "Blue Brown Green");
+    eyes = new Question("Is the color of their eyes ", 
+        "Blue Brown Green");
     questions.add(eyes);
 
-    hairL = new Question("Is the length of their hair ", "Short Medium Long");
+    hairL = new Question("Is the length of their hair ", 
+        "Short Medium Long");
     questions.add(hairL);
 
     // build the filters
@@ -230,7 +233,8 @@ public class GuessWho {
       frame.add(answers[0][i]);
     }
 
-    JLabel localAnswers = new JLabel("Answers: " + "\n" + this.enteredAnswers);
+    JLabel localAnswers = new JLabel("Answers: " + "\n" 
+        + this.enteredAnswers);
     frame.add(localAnswers);
 
     frame.setVisible(true);
@@ -248,8 +252,10 @@ public class GuessWho {
   }
 
   private void winner() {
-    int gameover = JOptionPane.showConfirmDialog(null, "YOU WIN! " + "Want to Play Again?",
-        "Game Over", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+    int gameover = JOptionPane.showConfirmDialog(null, "YOU WIN! " 
+        + "Want to Play Again?",
+        "Game Over", JOptionPane.YES_NO_OPTION, 
+        JOptionPane.QUESTION_MESSAGE);
     if (gameover == JOptionPane.YES_OPTION) {
       this.frameDispose();
       GuessWho temp = new GuessWho();
@@ -261,8 +267,10 @@ public class GuessWho {
   }
 
   private void loser() {
-    int gameover = JOptionPane.showConfirmDialog(null, "YOU LOSE! " + "Want to Play Again?",
-        "Game Over", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+    int gameover = JOptionPane.showConfirmDialog(null, "YOU LOSE! " 
+        + "Want to Play Again?",
+        "Game Over", JOptionPane.YES_NO_OPTION, 
+        JOptionPane.QUESTION_MESSAGE);
     if (gameover == JOptionPane.YES_OPTION) {
       this.frameDispose();
       GuessWho temp = new GuessWho();
@@ -283,7 +291,8 @@ public class GuessWho {
             guesswho.buildQuestion(i);
             currentQuestion = quest[0][i].getText();
           } else {
-            JOptionPane.showMessageDialog(null, "You have already " + "guessed this!");
+            JOptionPane.showMessageDialog(null, "You have already " 
+                + "guessed this!");
           }
         }
       }
@@ -299,10 +308,13 @@ public class GuessWho {
       for (int i = 0; i < length; i++) {
         if (clicked.getSource() == answers[0][i]) {
           if (currentQuestion == hairColorQ) {
-            if (answers[0][i].getText().replace(" ", "").equals(victim.getHairColor())) {
-              if (!guesswho.getInstance().contains(victim.getHairColor())) {
+            if (answers[0][i].getText().replace(" ", "")
+                .equals(victim.getHairColor())) {
+              if (!guesswho.getInstance().contains(victim
+                  .getHairColor())) {
                 guesswho.getInstance().add(victim.getHairColor());
-                guesswho.appendAnswers("Hair Color: " + victim.getHairColor() + ". ");
+                guesswho.appendAnswers("Hair Color: " + victim
+                    .getHairColor() + ". ");
                 filters.set(0, false);
                 JOptionPane.showMessageDialog(null, "Correct!");
               }
@@ -312,10 +324,12 @@ public class GuessWho {
           }
 
           if (currentQuestion.equals(eyeColorQ)) {
-            if (answers[0][i].getText().replace(" ", "").equals(victim.getEyes())) {
+            if (answers[0][i].getText().replace(" ", "")
+                .equals(victim.getEyes())) {
               if (!guesswho.getInstance().contains(victim.getEyes())) {
                 guesswho.getInstance().add(victim.getEyes());
-                guesswho.appendAnswers("Eye Color: " + victim.getEyes() + ". ");
+                guesswho.appendAnswers("Eye Color: " + victim
+                    .getEyes() + ". ");
                 filters.set(1, false);
                 JOptionPane.showMessageDialog(null, "Correct!");
               }
@@ -325,17 +339,20 @@ public class GuessWho {
           }
 
           if (currentQuestion.equals(hairLengthQ)) {
-            if (answers[0][i].getText().replace(" ", "").equals(victim.getHair())) {
+            if (answers[0][i].getText().replace(" ", "").equals(victim
+                .getHair())) {
               if (!guesswho.getInstance().contains(victim.getHair())) {
                 guesswho.getInstance().add(victim.getHair());
-                guesswho.appendAnswers("Hair Length: " + victim.getHair() + ". ");
+                guesswho.appendAnswers("Hair Length: " + victim
+                    .getHair() + ". ");
                 filters.set(2, false);
                 JOptionPane.showMessageDialog(null, "Correct!");
               }
             }
           }
           if (currentQuestion.equals(nameQ)) {
-            if (answers[0][i].getText().equals(guesswho.victim.getName())) {
+            if (answers[0][i].getText().equals(guesswho.victim
+                .getName())) {
               guesswho.winner();
               return;
             } else {
