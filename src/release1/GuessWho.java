@@ -59,14 +59,14 @@ public class GuessWho {
 
     Character patton = new Character();
     Character josh = new Character("Josh", "Short", "Brown", "Brown");
-    Character pual = new Character("Pual", "Medium", "Blue", "Blonde");
+    Character paul = new Character("Pual", "Medium", "Blue", "Blonde");
     Character sally = new Character("Sally", "Long", "Brown", "Black");
     Character sue = new Character("Sue", "Long", "Green", "Red");
 
     // adds the characters to the list of characters
     characters.add(patton);
     characters.add(josh);
-    characters.add(pual);
+    characters.add(paul);
     characters.add(sally);
     characters.add(sue);
 
