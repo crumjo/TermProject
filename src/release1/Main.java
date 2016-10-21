@@ -2,7 +2,7 @@ package release1;
 
 public class Main {
   /*****************************************************************
-   * @author Patton Finley, Josh Crum, Pual Mcgee
+   * @author Patton Finley, Josh Crum, Pual Magee
    * 
    *     The main method that creates the main screen for the mind 
    *     games.

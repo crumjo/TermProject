@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /*****************************************************************
- * @author Patton Finley, Josh Crum, Pual Mcgee
+ * @author Patton Finley, Josh Crum, Pual Magee
  * 
  * 
  *         A Game of guess who.

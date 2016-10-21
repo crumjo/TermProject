@@ -1,7 +1,7 @@
 package release1;
 
 /*****************************************************************
- * @author Patton Finley, Josh Crum, Pual Mcgee
+ * @author Patton Finley, Josh Crum, Pual Magee
  * 
  * 
  *         A Charcater class to be used in a game of guess who.

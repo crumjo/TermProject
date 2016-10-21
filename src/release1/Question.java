@@ -3,7 +3,7 @@ package release1;
 import java.util.ArrayList;
 
 /*****************************************************************
- * @author Patton Finley, Josh Crum, Pual Mcgee
+ * @author Patton Finley, Josh Crum, Pual Magee
  * 
  * 
  *         A Question class for guess who.
