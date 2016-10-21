@@ -110,14 +110,20 @@ public class GuessWho {
 
   }
 
-  private ArrayList<String> getInstance() {
+  /*****************************************************************
+   * Creates a new ArrayList if one does not exist or returns an
+   * existing one.
+   * 
+   * @return
+   *****************************************************************/
+  public ArrayList<String> getInstance() {
     if (userAnswers == null) {
       userAnswers = new ArrayList<String>();
     }
     return userAnswers;
   }
 
-  private void appendAnswers(String data) {
+  public void appendAnswers(String data) {
     this.enteredAnswers += data;
   }
 
