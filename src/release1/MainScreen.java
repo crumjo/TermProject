@@ -16,7 +16,7 @@ import javax.swing.JPanel;
  * 
  * 
  *         A Home Screen for mind games.
- ****************************************************************/
+ *     **********************************************************/
 
 public class MainScreen extends JPanel {
 

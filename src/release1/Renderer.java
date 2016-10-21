@@ -5,15 +5,21 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+/*****************************************************************
+ * @author Patton Finley, Josh Crum, Pual Magee
+ * 
+ * 
+ *         Just a renderer that is used for simon says.
+ *     ************************************************************/
 @SuppressWarnings("serial")
 public class Renderer extends JPanel {
 
   @Override
-  protected void paintComponent(Graphics g) {
-    super.paintComponent(g);
+  protected void paintComponent(Graphics g1) {
+    super.paintComponent(g1);
 
     if (Simon.simon != null) {
-      Simon.simon.paint((Graphics2D) g);
+      Simon.simon.paint((Graphics2D) g1);
     }
   }
 

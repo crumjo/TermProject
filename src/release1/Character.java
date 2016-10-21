@@ -5,7 +5,7 @@ package release1;
  * 
  * 
  *         A Charcater class to be used in a game of guess who.
- *****************************************************************/
+ *     ***********************************************************/
 public class Character {
 
   //a string that represents the character name
@@ -38,7 +38,7 @@ public class Character {
    *          the color of the eyes of the character
    * @param hairColor
    *          the color of the hair of the character
-   *****************************************************************/
+   *     ***********************************************************/
   public Character(String name, String hair, String eyes, 
       String hairColor) {
     this.name = name;

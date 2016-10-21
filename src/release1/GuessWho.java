@@ -20,7 +20,7 @@ import javax.swing.JPanel;
  * 
  * 
  *         A Game of guess who.
- *****************************************************************/
+ *     ***********************************************************/
 public class GuessWho {
 
   public static GuessWho guesswho;
