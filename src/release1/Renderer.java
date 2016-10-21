@@ -5,6 +5,12 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+/*****************************************************************
+ * @author Patton Finley, Josh Crum, Pual Magee
+ * 
+ * 
+ *         Just a renderer that is used for simon says.
+ *****************************************************************/
 @SuppressWarnings("serial")
 public class Renderer extends JPanel {
 

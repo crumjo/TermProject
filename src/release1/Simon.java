@@ -17,6 +17,12 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
+/*****************************************************************
+ * @author Patton Finley, Josh Crum, Pual Magee
+ * 
+ * 
+ *         A Game of simon says.
+ *****************************************************************/
 public class Simon implements ActionListener, MouseListener {
 
   protected static Simon simon;
