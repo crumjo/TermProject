@@ -45,7 +45,7 @@ public class ReleaseOneTesting {
     assertEquals("long", test.getHair());
   }
   
-  
+  //
   @Test
   public void testGetEyes() {
     Character test = new Character("test", "long", "green", "red");
