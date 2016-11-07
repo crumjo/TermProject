@@ -18,10 +18,9 @@ import javax.swing.JPanel;
  *         A Home Screen for mind games.
  *     **********************************************************/
 
-public class MainScreen extends JPanel {
+public class MainScreen extends JFrame {
 
   private static final long serialVersionUID = 1L;
-  public static MainScreen mainScreen;
   // JFrame frame used for the gui
   private JFrame frame;
   // JButton made to select simon says

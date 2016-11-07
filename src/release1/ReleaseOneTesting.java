@@ -1,4 +1,4 @@
-package release1;
+package release1; //release.1
 
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertThat;
