@@ -264,11 +264,11 @@ public class GuessWho {
         JOptionPane.QUESTION_MESSAGE);
     if (gameover == JOptionPane.YES_OPTION) {
       this.frameDispose();
-      GuessWho temp = new GuessWho();
+      new GuessWho();
     } else {
       this.frameDispose();
       this.secondBuild.dispose();
-      MainScreen.mainScreen = new MainScreen();
+      new MainScreen();
     }
   }
 
@@ -279,11 +279,11 @@ public class GuessWho {
         JOptionPane.QUESTION_MESSAGE);
     if (gameover == JOptionPane.YES_OPTION) {
       this.frameDispose();
-      GuessWho temp = new GuessWho();
+      new GuessWho();
     } else {
       this.frameDispose();
       this.secondBuild.dispose();
-      MainScreen.mainScreen = new MainScreen();
+      new MainScreen();
     }
   }
 

@@ -220,7 +220,7 @@ public class Simon implements ActionListener, MouseListener {
         gameOver = false;
       } else {
         this.frameDispose();
-        MainScreen.mainScreen = new MainScreen();
+        new MainScreen();
       }
 
     }
