@@ -99,7 +99,8 @@ public class MainScreen extends JFrame {
       }
       // checks maze button
       if (response.getSource() == mazebutton) {
-        JOptionPane.showMessageDialog(frame, "Maze is coming soon!");
+        MazePanel panel = new MazePanel();
+        frame.dispose();
       }
       // checks speedtyping button
       if (response.getSource() == typebutton) {

@@ -1,65 +1,148 @@
 package release1;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-
-
 //this class is real aMAZING, its the gui for maze 
-public class MazePanel extends JFrame{
+public class MazePanel extends JFrame {
 
-  //this class is for the maze game
-  //its amazing, 
-  
-  //determines the size of the maze grid
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 1L;
+  // this class is for the maze game
+  // its amazing,
+
+  // determines the size of the maze grid
   final int size;
-  //JFrame to host the maze grid
+  // private MazeEngine to run the game
+  private MazeEngine game;
+  // JFrame to host the maze grid
   private JFrame frame;
-  //double array of jbuttons to build a grid
+  // panel to hold grid to be added to frame
+  private JPanel panel;
+  // double array of jbuttons to build a grid
   private JButton[][] grid;
-  //MazeCell used to fill in the board
+  // MazeCell used to fill in the board
   private MazeCell Cell;
   
-  public MazePanel(){
-    //sets maze size to 10/10 for now can ask them later
-    size = 10;
-    //builds frame then fills in grid with either a blank, a wall or a start/finish point
-    frame = new JFrame("Maze");
-    frame.setSize(808, 830);
-    frame.setResizable(false);
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  public MazePanel() {
+    // sets maze size to 10/10 for now can ask them later
+    this.size = 25;
+    // builds frame then fills in grid with either a blank, a wall or a start/finish point
+    this.frame = new JFrame("Maze");
+    this.frame.setSize(808, 830);
+    this.frame.setResizable(true);
+    this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    this.grid = new JButton[size][size];
+    this.panel = new JPanel();
+    this.panel.setLayout(new GridLayout(size, size));
     this.buildGrid();
+    this.frame.add(panel);
+    this.frame.setVisible(true);
+    // Initialize MazeEngine
+    this.game = new MazeEngine(size);
+    this.displayboard();
   }
-  
-  //builds the grid with nested for loops and adds them to the frame
-  private void buildGrid(){
-    //listener for when the button is clicked
+
+  // builds the grid with nested for loops and adds them to the frame
+  private void buildGrid() {
+    // listener for when the button is clicked
     ButtonListener listener = new ButtonListener();
-    //nested for loop for all the slowness
+    // sets the prefered size of the button
+    Dimension preferredSize = new Dimension(50, 60);
+    // nested for loop for all the slowness
     for (int row = 0; row < size; row++) {
       for (int col = 0; col < size; col++) {
-        grid[row][col] = new JButton ("");
-        grid[row][col].addActionListener(listener);
-        this.frame.add(grid[row][col]);
+        this.grid[row][col] = new JButton("");
+        this.grid[row][col].addActionListener(listener);
+        this.grid[row][col].setPreferredSize(preferredSize);
+        this.panel.add(grid[row][col]);
+        this.grid[row][col].setBackground(Color.GRAY);
+        // here sets them un-enabled
+        this.grid[row][col].setEnabled(false);
       }
     }
   }
+
+  //sets up the board 
+  private void displayboard() {
+    for (int row = 0; row < size; row++) {
+      for (int col = 0; col < size; col++) {
+        Cell = game.getCell(row, col);
+        if (Cell.isPath()) {
+          //sets up the path
+          this.grid[row][col].setEnabled(true);
+          this.grid[row][col].setBackground(Color.WHITE);
+        }
+        if (Cell.isStart()) {
+          //sets up the start
+          this.grid[row][col].setEnabled(true);
+          this.grid[row][col].setBackground(Color.RED);
+        }
+        if(Cell.isFinish()){
+          //sets up the finish
+          this.grid[row][col].setEnabled(true);
+          this.grid[row][col].setBackground(Color.BLUE);
+        }
+      }
+    }
+  }
+
+ 
+  //used in the buttonlistener turns off cell
+  public void setunEnabled(int row, int col){
+    this.grid[row][col].setEnabled(false);
+  }
   
+  //buttonlistener 
   private class ButtonListener implements ActionListener {
 
     @Override
-    public void actionPerformed(ActionEvent arg0) {
-      // TODO Auto-generated method stub
-  
-    }
-    
-    
+    public void actionPerformed(ActionEvent e) {
+      //nested for loop yet again(dreadful)
+      for (int row = 0; row < size; row++) {
+        for (int col = 0; col < size; col++) {
+          //checks if its selected cell 
+          if(e.getSource() == grid[row][col]){
+            //uses look around to find out if it can be clicked on
+            if(game.lookAround(row,col)){
+              setunEnabled(row,col);
+              //sets the color to red as explored
+            grid[row][col].setBackground(Color.RED);
+            
+            //checks to see if you won yet
+            if(game.foundEnd(row, col)){
+                gWon();
+        }   
+          }
+        }
+      }
+
   }
 
-}
+  }
+  
+    //this just pops up when you win and restarts it.
+  private void gWon(){
+    int gameover = JOptionPane.showConfirmDialog(null, 
+        "Want to Play Again?", "You won", JOptionPane.YES_NO_OPTION, 
+        JOptionPane.QUESTION_MESSAGE);
+    if (gameover == JOptionPane.YES_OPTION) {
+      frame.dispose();
+      new MazePanel();
+    } else {
+      frame.dispose();
+      new MainScreen();
+    }
+
+  }
+  }
+  }
