@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 public class Renderer extends JPanel {
 
   @Override
-  protected void paintComponent(Graphics g1) {
+  protected final void paintComponent(final Graphics g1) {
     super.paintComponent(g1);
 
     if (Simon.simon != null) {
