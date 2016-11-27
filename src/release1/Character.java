@@ -1,20 +1,28 @@
 package release1;
 
 /*****************************************************************
- * @author Patton Finley, Josh Crum, Pual Magee
+ * @author Patton Finley, Josh Crum, Paul Magee
  * 
  * 
  *         A Charcater class to be used in a game of guess who.
  *     ***********************************************************/
 public class Character {
 
-  //a string that represents the character name
+  /**
+   * a string that represents the character name.
+   */
   private String name;
-  //a string that represents the characters hair length
+  /**
+   * a string that represents the characters hair length.
+   */
   private String hair;
-  //a string that represents the characters eye color
+  /**
+   * a string that represents the characters eye color.
+   */
   private String eyes;
-  //a string that represents the characters hair color
+  /**
+   * a string that represents the characters hair color.
+   */
   private String hairColor;
 
   /*****************************************************************
@@ -39,7 +47,7 @@ public class Character {
    * @param hairColor
    *          the color of the hair of the character
    *     ***********************************************************/
-  public Character(String name, String hair, String eyes, 
+  public Character(final String name, final String hair, final String eyes, 
       String hairColor) {
     this.name = name;
     this.hair = hair;
@@ -49,29 +57,37 @@ public class Character {
 
   /*****************************************************************
    * A getter class for a characters name.
+   * @return name
+   *          gets the name.
    *****************************************************************/
-  public String getName() {
+  public final String getName() {
     return name;
   }
 
   /*****************************************************************
    * A getter class for a characters hair length.
+   * @return hair
+   *          gets the hair.
    *****************************************************************/
-  public String getHair() {
+  public final String getHair() {
     return hair;
   }
 
   /*****************************************************************
    * A getter class for a characters eye color.
+   * @return eyes
+   *          gets the eyes.
    *****************************************************************/
-  public String getEyes() {
+  public final String getEyes() {
     return eyes;
   }
 
   /*****************************************************************
    * A getter class for a characters hair color.
+   * @return hairColor
+   *          gets the hair color.
    *****************************************************************/
-  public String getHairColor() {
+  public final String getHairColor() {
     return hairColor;
   }
 }
