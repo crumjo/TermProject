@@ -25,18 +25,58 @@ import javax.swing.Timer;
  *     ***********************************************************/
 public class Simon implements ActionListener, MouseListener {
 
+  /**
+   * 
+   */
   protected static Simon simon;
-  Renderer renderer = new Renderer();
+  /**
+   * Renderer object from the Renderer class.
+   */
+  private Renderer renderer = new Renderer();
+  /**
+   * Width integer for frame.
+   */
   public static final int WIDTH = 800;
+  /**
+   * Height integer for frame.
+   */
   public static final int HEIGHT = 800;
+  /**
+   * Variable that holds how many time the colors flash.
+   */
   public int flashed = 0;
+  /**
+   * variable to determine if the color is dark or light up.
+   */
   public int dark;
+  /**
+   * Variable that hold how many times the player got the color
+   * correct.
+   */
   public int ticks;
+  /**
+   * Variable to index the array list.
+   */
   public int index;
+  /**
+   * Variable to determine of the array list is created.
+   */
   public boolean creatingSequence = true;
+  /**
+   * Array list to hold all the color sequences.
+   */
   public ArrayList<Integer> sequence;
+  /**
+   * Random generator object.
+   */
   public Random random;
+  /**
+   * Variable to determine if the game is over.
+   */
   private boolean gameOver;
+  /**
+   * The frame object.
+   */
   private JFrame frame;
 
   /*****************************************************************
@@ -47,7 +87,7 @@ public class Simon implements ActionListener, MouseListener {
     frame = new JFrame("Simon Says");
     final Timer timer = new Timer(20, this);
 
-    frame.setSize(WIDTH + 8, HEIGHT + 30);
+    frame.setSize(WIDTH, HEIGHT);
 
     frame.addMouseListener(this);
     frame.setResizable(false);
@@ -66,8 +106,10 @@ public class Simon implements ActionListener, MouseListener {
     //timer.start();
     //}
   }
-
-  public void frameDispose() {
+  /**
+   * 
+   */
+  public final void frameDispose() {
     frame.dispose();
   }
 
@@ -75,7 +117,7 @@ public class Simon implements ActionListener, MouseListener {
    * Starts the timer by flashing the different quadrants of the
    * circle.
    *****************************************************************/
-  public void start() {
+  public final void start() {
     random = new Random();
     sequence = new ArrayList<Integer>();
     index = 0;
@@ -85,7 +127,7 @@ public class Simon implements ActionListener, MouseListener {
   }
 
   @Override
-  public void actionPerformed(ActionEvent e1) {
+  public final void actionPerformed(final ActionEvent e1) {
     ticks++;
 
     if (ticks % 20 == 0) {
@@ -124,9 +166,9 @@ public class Simon implements ActionListener, MouseListener {
   /*****************************************************************
    * Creates the color wheel screen.
    * 
-   * @param g1
+   * @param g1 
    *****************************************************************/
-  public void paint(Graphics2D g1) {
+  public final void paint(final Graphics2D g1) {
     g1.setRenderingHint(RenderingHints.KEY_ANTIALIASING, 
         RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -177,12 +219,13 @@ public class Simon implements ActionListener, MouseListener {
     if (gameOver) {
       g1.drawString("Game Over", WIDTH / 2 - 400, HEIGHT / 2 + 42);
     } else {
-      g1.drawString(index + "/" + sequence.size(), WIDTH / 2 - 100, HEIGHT / 2 + 42);
+      g1.drawString(index + "/" + sequence.size(),
+          WIDTH / 2 - 100, HEIGHT / 2 + 42);
     }
   }
 
   @Override
-  public void mousePressed(MouseEvent e1) {
+  public final void mousePressed(final MouseEvent e1) {
     int x1 = e1.getX();
     int y1 = e1.getY();
 
@@ -227,19 +270,19 @@ public class Simon implements ActionListener, MouseListener {
   }
 
   @Override
-  public void mouseClicked(MouseEvent e1) {
+  public void mouseClicked(final MouseEvent e1) {
   }
 
   @Override
-  public void mouseReleased(MouseEvent e1) {
+  public void mouseReleased(final MouseEvent e1) {
   }
 
   @Override
-  public void mouseEntered(MouseEvent e1) {
+  public void mouseEntered(final MouseEvent e1) {
   }
 
   @Override
-  public void mouseExited(MouseEvent e1) {
+  public void mouseExited(final MouseEvent e1) {
   }
 
 }

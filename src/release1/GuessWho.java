@@ -23,27 +23,93 @@ import javax.swing.JPanel;
  *     ***********************************************************/
 public class GuessWho {
 
+  /**
+   * 
+   */
   public static GuessWho guesswho;
+  /**
+   * Frame object.
+   */
   private JFrame frame;
+  /**
+   * the other frame onject.
+   */
   private JFrame secondBuild;
+  /**
+   * Label for the names.
+   */
   private JLabel names;
+  /**
+   * Buttons for the questions.
+   */
   private JButton[][] quest;
+  /**
+   * Buttons for the answers.
+   */
   private JButton[][] answers;
+  /**
+   * ArrayList for the characters.
+   */
   private ArrayList<Character> characters;
+  /**
+   * ArrayList for the questions.
+   */
   private ArrayList<Question> questions;
+  /**
+   * ArrayList for the users answers.
+   */
   private ArrayList<String> userAnswers;
+  /**
+   * ArrayList of the filters.
+   */
   private ArrayList<Boolean> filters;
+  /**
+   * Poor character.
+   */
   private Character victim;
+  /**
+   * The hair Color.
+   */
   private Question hairC;
+  /**
+   * The Hair Length.
+   */
   private Question hairL;
+  /**
+   * Their eye color.
+   */
   private Question eyes;
+  /**
+   * String for hair color.
+   */
   private String hairColorQ = "Is the color of their hair ";
+  /**
+   * String for eye color.
+   */
   private String eyeColorQ = "Is the color of their eyes ";
+  /**
+   * string for the hair length.
+   */
   private String hairLengthQ = "Is the length of their hair ";
+  /**
+   * string for the name.
+   */
   private String nameQ = "Would you like to guess?";
+  /**
+   * String for the current question.
+   */
   private String currentQuestion;
+  /**
+   * String for entered answers.
+   */
   private String enteredAnswers = "";
+  /**
+   * Integer for width.
+   */
   private final int width;
+  /**
+   * Integer for height.
+   */
   private final int height;
 
   /*****************************************************************
@@ -114,23 +180,34 @@ public class GuessWho {
    * Creates a new ArrayList if one does not exist or returns an
    * existing one.
    * 
-   * @return
+   * @return userAnswers
+   *            creates the instance for ArrayList.
    *****************************************************************/
-  public ArrayList<String> getInstance() {
+  public final ArrayList<String> getInstance() {
     if (userAnswers == null) {
       userAnswers = new ArrayList<String>();
     }
     return userAnswers;
   }
-
-  public void appendAnswers(String data) {
+  /**
+   * 
+   * @param data
+   *          adds the string to the ArrayList.
+   */
+  public final void appendAnswers(final String data) {
     this.enteredAnswers += data;
   }
 
-  public void frameDispose() {
+  /**
+   * 
+   */
+  public final void frameDispose() {
     frame.dispose();
   }
-
+  
+  /**
+   * 
+   */
   private void buildFirst() {
 
     // builds the screen to look at the characters for 30 seconds.
@@ -169,6 +246,9 @@ public class GuessWho {
     frame.setVisible(true);
   }
 
+  /**
+   * 
+   */
   private void buildSecond() {
 
     this.secondBuild = new JFrame("Guess Who");
@@ -198,8 +278,12 @@ public class GuessWho {
     this.secondBuild.add(localAnswers);
     this.secondBuild.setVisible(true);
   }
-
-  private void buildQuestion(int input) {
+  /**
+   * 
+   * @param input
+   *            takes the users input.
+   */   
+  private void buildQuestion(final int input) {
     frame = new JFrame(questions.get(input).getQuestion());
 
     answers = new JButton[1][4];
@@ -221,6 +305,9 @@ public class GuessWho {
     frame.setVisible(true);
   }
 
+  /**
+   * Method to build the guesses.
+   */
   private void buildGuess() {
     frame = new JFrame("Guess what Character you think it is!");
     answers = new JButton[1][characters.size()];
@@ -245,7 +332,10 @@ public class GuessWho {
 
     frame.setVisible(true);
   }
-
+  
+  /**
+   * Method to select the character.
+   */
   private void selectVictim() {
     Random selector = new Random();
     int temp = selector.nextInt(characters.size());
@@ -253,10 +343,16 @@ public class GuessWho {
     System.out.println(this.victim.getName());
   }
 
+  /**
+   * method to show the try again popup.
+   */
   private void tryAgainMessage() {
     JOptionPane.showMessageDialog(null, "Try a different answer.");
   }
 
+  /**
+   * Method for the winner.
+   */
   private void winner() {
     int gameover = JOptionPane.showConfirmDialog(null, "YOU WIN! " 
         + "Want to Play Again?",
@@ -272,6 +368,9 @@ public class GuessWho {
     }
   }
 
+  /**
+   * Method to show the loser..Loser.
+   */
   private void loser() {
     int gameover = JOptionPane.showConfirmDialog(null, "YOU LOSE! " 
         + "Want to Play Again?",
@@ -287,9 +386,18 @@ public class GuessWho {
     }
   }
 
+  /**
+   * 
+   * @author Patton Finley, Josh Crum, Pual Magee
+   *      Not quite sure why it wanted the author here in javadoc.
+   */
   private class ButtonListener implements ActionListener {
 
-    public void actionPerformed(ActionEvent clicked) {
+    /**
+     * @param clicked
+     *            checks for the users mouse click.
+     */
+    public void actionPerformed(final ActionEvent clicked) {
       for (int i = 0; i < 3; i++) {
         if (clicked.getSource() == quest[0][i]) {
           if (filters.get(i) == true) {
