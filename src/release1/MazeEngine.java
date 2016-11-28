@@ -14,6 +14,7 @@ public class MazeEngine {
   //finish row and col
   private int fRow;
   private int fCol;
+  private boolean isFinish;
 
   // builds a defualt array of cells as 10/10
   public MazeEngine() {
@@ -34,13 +35,14 @@ public class MazeEngine {
     this.Buildgrid();
     this.genStart();
     this.genfinish();
+    this.isFinish = false;
     // builds random path all over math
     for(int i = 0; i<(gSize/2);i++){
     this.buildPath();
     }
    
     //builds one greedy path that finds the end for sure
-    this.greedyPath(sRow,sCol,fRow,fCol);
+    //this.greedyPath(sRow,sCol,fRow,fCol);
   }
 
   private void Buildgrid() {
@@ -201,7 +203,11 @@ public class MazeEngine {
       }
     }
     //runs greedy path to connect
-    this.greedyPath(sRow, sRow, rowTemp, colTemp);
+    if(!this.isFinish){
+      this.greedyPath(rowTemp, colTemp, fRow, fCol);
+      this.isFinish = true;
+    }
+    this.greedyPath(sRow, sCol, rowTemp, colTemp);
   }
 
   //gets the cell at a given spot int he grid
