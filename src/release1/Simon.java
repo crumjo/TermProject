@@ -87,7 +87,7 @@ public class Simon implements ActionListener, MouseListener {
     frame = new JFrame("Simon Says");
     final Timer timer = new Timer(20, this);
 
-    frame.setSize(WIDTH, HEIGHT);
+    frame.setSize(WIDTH + 8, HEIGHT + 30);
 
     frame.addMouseListener(this);
     frame.setResizable(false);

@@ -21,15 +21,25 @@ import javax.swing.JPanel;
 public class MainScreen extends JFrame {
 
   private static final long serialVersionUID = 1L;
-  // JFrame frame used for the gui
+  /** 
+   * JFrame frame used for the gui.
+   */
   private JFrame frame;
-  // JButton made to select simon says
+  /**
+   * JButton made to select Simon says.
+   */
   private JButton simonbutton;
-  // JButton made to select guess who
+  /**
+   * JButton made to select guess who.
+   */
   private JButton guessbutton;
-  //JButton made to select maze
+  /**
+   * JButton made to select maze.
+   */
   private JButton mazebutton;
-  // JButton made to select speed typing
+  /**
+   * JButton made to select speed typing.
+   */
   private JButton typebutton;
 
   /*****************************************************************
@@ -86,7 +96,11 @@ public class MainScreen extends JFrame {
    *****************************************************************/
   private class ButtonListener implements ActionListener {
 
-    public void actionPerformed(ActionEvent response) {
+    /**
+     * @param response
+     *          Takes the users mouse click to select game.
+     */
+    public void actionPerformed(final ActionEvent response) {
       // checks simon button
       if (response.getSource() == simonbutton) {
         Simon.simon = new Simon();
