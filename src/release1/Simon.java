@@ -44,32 +44,32 @@ public class Simon implements ActionListener, MouseListener {
   /**
    * Variable that holds how many time the colors flash.
    */
-  public int flashed = 0;
+  private int flashed = 0;
   /**
    * variable to determine if the color is dark or light up.
    */
-  public int dark;
+  private int dark;
   /**
    * Variable that hold how many times the player got the color
    * correct.
    */
-  public int ticks;
+  private int ticks;
   /**
    * Variable to index the array list.
    */
-  public int index;
+  private int index;
   /**
    * Variable to determine of the array list is created.
    */
-  public boolean creatingSequence = true;
+  private boolean creatingSequence = true;
   /**
    * Array list to hold all the color sequences.
    */
-  public ArrayList<Integer> sequence;
+  private ArrayList<Integer> sequence;
   /**
    * Random generator object.
    */
-  public Random random;
+  private Random random;
   /**
    * Variable to determine if the game is over.
    */
