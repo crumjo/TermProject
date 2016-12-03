@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 
 /*****************************************************************
- * @author Patton Finley, Josh Crum, Pual Magee
+ * @author Patton Finley, Josh Crum, Paul Magee
  * 
  * 
  *         A Home Screen for mind games.
