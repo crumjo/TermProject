@@ -78,6 +78,54 @@ public class Simon implements ActionListener, MouseListener {
    * The frame object.
    */
   private JFrame frame;
+  /**
+   * Magic Number.
+   */
+  public static final int FOUR = 4;
+  /**
+   * Magic Number.
+   */
+  public static final int THREE = 3;
+  /**
+   * Magic Number.
+   */
+  public static final int TWENTY = 20;
+  /**
+   * Magic Number.
+   */
+  public static final int EIGHT = 8;
+  /**
+   * Magic Number.
+   */
+  public static final int THIRTY = 30;
+  /**
+   * Magic Number.
+   */
+  public static final int FOURTY = 40;
+  /**
+   * Magic Number.
+   */
+  public static final int HUNDRED = 100;
+  /**
+   * Magic Number.
+   */
+  public static final int TWOHUNDRED = 200;
+  /**
+   * Magic Number.
+   */
+  public static final int FOURTYTWO = 42;
+  /**
+   * Magic Number.
+   */
+  public static final int ONEFOURTYTWO = 142;
+  /**
+   * Magic Number.
+   */
+  public static final int TEN = 10;
+  /**
+   * Magic Number.
+   */
+  public static final int FOURHUNDRED = 400;
 
   /*****************************************************************
    * A game of Simon where the player has to remember which colors
@@ -87,7 +135,7 @@ public class Simon implements ActionListener, MouseListener {
     frame = new JFrame("Simon Says");
     final Timer timer = new Timer(20, this);
 
-    frame.setSize(WIDTH + 8, HEIGHT + 30);
+    frame.setSize(WIDTH + EIGHT, HEIGHT + THIRTY);
 
     frame.addMouseListener(this);
     frame.setResizable(false);
@@ -130,7 +178,7 @@ public class Simon implements ActionListener, MouseListener {
   public final void actionPerformed(final ActionEvent e1) {
     ticks++;
 
-    if (ticks % 20 == 0) {
+    if (ticks % TWENTY == 0) {
       flashed = 0;
 
       if (dark >= 0) {
@@ -141,7 +189,7 @@ public class Simon implements ActionListener, MouseListener {
     if (creatingSequence) {
       if (dark <= 0) {
         if (index >= sequence.size()) {
-          flashed = random.nextInt(40) % 4 + 1;
+          flashed = random.nextInt(FOURTY) % FOUR + 1;
           sequence.add(flashed);
           index = 0;
           creatingSequence = false;
@@ -188,7 +236,7 @@ public class Simon implements ActionListener, MouseListener {
 
     g1.fillRect(WIDTH / 2, 0, WIDTH / 2, HEIGHT / 2);
 
-    if (flashed == 3) {
+    if (flashed == THREE) {
       g1.setColor(Color.ORANGE);
     } else {
       g1.setColor(Color.ORANGE.darker());
@@ -196,7 +244,7 @@ public class Simon implements ActionListener, MouseListener {
 
     g1.fillRect(0, HEIGHT / 2, WIDTH / 2, HEIGHT / 2);
 
-    if (flashed == 4) {
+    if (flashed == FOUR) {
       g1.setColor(Color.BLUE);
     } else {
       g1.setColor(Color.BLUE.darker());
@@ -206,21 +254,22 @@ public class Simon implements ActionListener, MouseListener {
 
     g1.setColor(Color.BLACK);
     g1.setColor(Color.GRAY);
-    g1.setStroke(new BasicStroke(200));
-    g1.drawOval(-100, -100, WIDTH + 200, HEIGHT + 200);
+    g1.setStroke(new BasicStroke(TWOHUNDRED));
+    g1.drawOval(-HUNDRED, -HUNDRED, WIDTH + TWOHUNDRED, HEIGHT + TWOHUNDRED);
 
     g1.setColor(Color.BLACK);
-    g1.setStroke(new BasicStroke(10));
+    g1.setStroke(new BasicStroke(TEN));
     g1.drawOval(0, 0, WIDTH, HEIGHT);
 
     g1.setColor(Color.WHITE);
-    g1.setFont(new Font("Arial", 1, 142));
+    g1.setFont(new Font("Arial", 1, ONEFOURTYTWO));
 
     if (gameOver) {
-      g1.drawString("Game Over", WIDTH / 2 - 400, HEIGHT / 2 + 42);
+      g1.drawString("Game Over", WIDTH / 2 - FOURHUNDRED, 
+          HEIGHT / 2 + FOURTYTWO);
     } else {
       g1.drawString(index + "/" + sequence.size(),
-          WIDTH / 2 - 100, HEIGHT / 2 + 42);
+          WIDTH / 2 - HUNDRED, HEIGHT / 2 + FOURTYTWO);
     }
   }
 
@@ -239,11 +288,11 @@ public class Simon implements ActionListener, MouseListener {
         ticks = 1;
       } else if (x1 > 0 && x1 < WIDTH / 2 && y1 > HEIGHT / 2 
           && y1 < HEIGHT) {
-        flashed = 3;
+        flashed = THREE;
         ticks = 1;
       } else if (x1 > WIDTH / 2 && x1 < WIDTH && y1 > HEIGHT / 2 
           && y1 < HEIGHT) {
-        flashed = 4;
+        flashed = FOUR;
         ticks = 1;
       }
 

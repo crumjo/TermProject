@@ -41,6 +41,19 @@ public class MainScreen extends JFrame {
    * JButton made to select speed typing.
    */
   private JButton typebutton;
+  /**
+   * Magic Number.
+   */
+  public static final int EIGHT = 8;
+  /**
+   * Magic Number.
+   */
+  public static final int THIRTY = 30;
+  /**
+   * Magic Number.
+   */
+  public static final int TWENTY = 20;
+
 
   /*****************************************************************
    * A mainScreen constructor used to build the main screen.
@@ -61,7 +74,7 @@ public class MainScreen extends JFrame {
 
     // builds main frame outside
     frame = new JFrame("Mind Games");
-    frame.setSize(width + 8, height + 30);
+    frame.setSize(width + EIGHT, height + THIRTY);
     frame.setResizable(false);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -75,10 +88,10 @@ public class MainScreen extends JFrame {
     typebutton.addActionListener(listener);
 
     // sets button size
-    this.simonbutton.setSize(20, 20);
-    this.guessbutton.setSize(20, 20);
-    this.mazebutton.setSize(20, 20);
-    this.typebutton.setSize(20, 20);
+    this.simonbutton.setSize(TWENTY, TWENTY);
+    this.guessbutton.setSize(TWENTY, TWENTY);
+    this.mazebutton.setSize(TWENTY, TWENTY);
+    this.typebutton.setSize(TWENTY, TWENTY);
 
     // builds mainframe inside
     frame.setLayout(new GridLayout(2, 1));
