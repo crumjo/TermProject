@@ -48,7 +48,7 @@ public class Character {
    *          the color of the hair of the character
    *     ***********************************************************/
   public Character(final String name, final String hair, final String eyes, 
-      String hairColor) {
+      final String hairColor) {
     this.name = name;
     this.hair = hair;
     this.eyes = eyes;

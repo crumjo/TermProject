@@ -139,6 +139,10 @@ public class GuessWho {
    * Magic Number.
    */
   public static final int THIRTYK = 30000;
+  /**
+   * Magic Number.
+   */
+  public static final int EIGHTHUNDRED = 800;
 
   /*****************************************************************
    * A Method that creates a game of guess who.
@@ -168,8 +172,8 @@ public class GuessWho {
 
     // creates Width and Height
 
-    width = 800;
-    height = 800;
+    width = EIGHTHUNDRED;
+    height = EIGHTHUNDRED;
     // builds the questions and the answers
     hairC = new Question("Is the color of their hair ", 
         "Red Black Blonde Brown");
@@ -243,10 +247,10 @@ public class GuessWho {
     final JPanel topPanel = new JPanel();
     final JPanel bottomPanel = new JPanel();
 
-    final int Width = 1000;
-    final int Height = 400;
+    final int width = 1000;
+    final int height = 400;
 
-    frame.setSize(Width, Height);
+    frame.setSize(width, height);
 
     frame.setResizable(false);
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

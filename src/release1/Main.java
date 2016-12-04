@@ -1,5 +1,10 @@
 package release1;
 
+/**
+ * 
+ * @author Patton Finley, Josh Crum, Paul Magee
+ *
+ */
 public class Main {
   /*****************************************************************
    * @author Patton Finley, Josh Crum, Paul Magee

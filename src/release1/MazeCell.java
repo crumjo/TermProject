@@ -51,9 +51,9 @@ public class MazeCell {
   
   /**
    * sets the value of start.
-   * @param isStart
+   * @param isStart 
    */
-  public final void setStart(boolean isStart) {
+  public final void setStart(final boolean isStart) {
     this.isStart = isStart;
   }
   
@@ -67,7 +67,7 @@ public class MazeCell {
 
   /**
    * sets the value of finish.
-   * @param isFinish
+   * @param isFinish 
    */
   public final void setFinish(final boolean isFinish) {
     this.isFinish = isFinish;
