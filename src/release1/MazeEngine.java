@@ -2,49 +2,84 @@ package release1;
 
 import java.util.Random;
 
-
+/**
+ * 
+ * @author Patton Finley, Josh Crum, Paul Magee
+ *
+ */
 public class MazeEngine {
-  // a grid of cells
+  /**
+   *  a grid of cells.
+   */
   private MazeCell[][] grid;
-  // a size of the board
+  /**
+   *  a size of the board.
+   */
   private int gSize;
-  //start row and col
+  /**
+   *  start row.
+   */
   private int sRow;
+  /**
+   * start col.
+   */
   private int sCol;
-  //finish row and col
+  /**
+   *  finish row.
+   */
   private int fRow;
+  /**
+   * finish  col.
+   */
   private int fCol;
-
-  // builds a defualt array of cells as 10/10
+  /**
+   * 
+   */
+  private boolean isFinish;
+  /**
+   * 
+   */
+  public static final int TEN = 10;
+  /**
+   *  builds a defualt array of cells as 10/10.
+   */
   public MazeEngine() {
-    gSize = 10;
+    gSize = TEN;
     this.grid = new MazeCell[gSize][gSize];
-    this.Buildgrid();
+    this.buildGrid();
     this.genStart();
     this.genfinish();
     // this.buildPath();
   }
 
-  public MazeEngine(int size) {
-    //size is what they choose
+  /**
+   * 
+   * @param size 
+   */
+  public MazeEngine(final int size) {
+    // size is what they choose
     gSize = size;
-    //iniatilize the grid
+    // iniatilize the grid
     this.grid = new MazeCell[gSize][gSize];
-    //builds the grid and makes the start and finish
-    this.Buildgrid();
+    // builds the grid and makes the start and finish
+    this.buildGrid();
     this.genStart();
     this.genfinish();
+    this.isFinish = false;
     // builds random path all over math
-    for(int i = 0; i<(gSize/2);i++){
-    this.buildPath();
+    for (int i = 0; i < (gSize / 2); i++) {
+      this.buildPath();
     }
-   
-    //builds one greedy path that finds the end for sure
-    this.greedyPath(sRow,sCol,fRow,fCol);
+
+    // builds one greedy path that finds the end for sure
+    // this.greedyPath(sRow,sCol,fRow,fCol);
   }
 
-  private void Buildgrid() {
-    //nested for loops to make its slot a cell
+  /**
+   * 
+   */
+  private void buildGrid() {
+    // nested for loops to make its slot a cell
     for (int row = 0; row < gSize; row++) {
       for (int col = 0; col < gSize; col++) {
         grid[row][col] = new MazeCell();
@@ -52,88 +87,97 @@ public class MazeEngine {
     }
   }
 
-  // you can start anywhere in the maze
+  /**
+   *  you can start anywhere in the maze.
+   */
   private void genStart() {
-    //randomly picks where you start on the map
+    // randomly picks where you start on the map
     Random selector = new Random();
-    //stores where the start is
+    // stores where the start is
     sRow = selector.nextInt(gSize);
     sCol = selector.nextInt(gSize);
-    //sets values for start
+    // sets values for start
     this.grid[sRow][sCol].setStart(true);
     this.grid[sRow][sCol].setExplored(true);
   }
 
-  // you can only finish on the outside of the maze
+  /**
+   *  you can only finish on the outside of the maze.
+   */
   private void genfinish() {
-    //random to choose where you are
+    // random to choose where you are
     Random selector = new Random();
     boolean placed = false;
-    //loops to make sure that final is placed on edge
-    while (placed != true) {
+    // loops to make sure that final is placed on edge
+    while (!placed) {
       fRow = selector.nextInt(gSize);
       fCol = selector.nextInt(gSize);
-      //checks cols edge
+      // checks cols edge
       if (fCol == 0 || fCol == gSize) {
         this.grid[fRow][fCol].setFinish(true);
         placed = true;
       }
-      //checks rows edge
+      // checks rows edge
       if (fRow == 0 || fRow == gSize) {
         this.grid[fRow][fCol].setFinish(true);
         placed = true;
       }
-      //makes sure it isnt put on start
+      // makes sure it isnt put on start
       if (fRow == sRow && fCol == sCol) {
         placed = false;
       }
     }
   }
 
-  //greed is the best. Finds the most derict route
-  private void greedyPath(int sr, int sc, int fr, int fc) {
-    //boolean to check if its done
+  /**
+   *  greed is the best. Finds the most derict route
+   * @param sr 
+   * @param sc 
+   * @param fr 
+   * @param fc 
+   */
+  private void greedyPath(final int sr, final int sc, 
+      final int fr, final int fc) {
+    // boolean to check if its done
     boolean done = false;
-    //row and col used to figure out if 
+    // row and col used to figure out if
     int col = 0;
     int row = 0;
-    //rowTemp and colTemp set to the starting spot
+    // rowTemp and colTemp set to the starting spot
     int rowTemp = sr;
     int colTemp = sc;
-    //loops to build path
+    // loops to build path
     while (!done) {
-      //determines which way to move
+      // determines which way to move
       col = fc - colTemp;
       row = fr - rowTemp;
-      //this are to decide where to move
+      // this are to decide where to move
       int cd = 1;
       int rd = 1;
-      //figures out if its up or down
+      // figures out if its up or down
       if (col < 0) {
         col = col * -1;
         cd = -1;
       }
-      //figures out if its to the left of right
+      // figures out if its to the left of right
       if (row < 0) {
         row = row * -1;
         rd = -1;
       }
-      //moves until its in the right column
+      // moves until its in the right column
       if (col > row) {
         while (fc - colTemp != 0) {
           this.grid[rowTemp][colTemp + cd].setPath(true);
           colTemp = colTemp + cd;
         }
-      }
-
-      else {
-        //moves until its in the right row
+      } else {
+        // moves until its in the right row
         while (fr - rowTemp != 0) {
           this.grid[rowTemp + rd][colTemp].setPath(true);
           rowTemp += rd;
         }
       }
-      //ends loop
+      // ends loop
       if (this.grid[rowTemp][colTemp] == this.grid[fr][fc]) {
         done = true;
       }
@@ -141,6 +185,9 @@ public class MazeEngine {
 
   }
 
+  /**
+   * 
+   */
   private void buildPath() {
     // picks what direction to move
     Random selector = new Random();
@@ -151,7 +198,7 @@ public class MazeEngine {
     int rowTemp = selector.nextInt(gSize);
     int colTemp = selector.nextInt(gSize);
     // this while loop builds the path
-    while (walked!=gSize) {
+    while (walked != gSize) {
       walked++;
       int direction = 0;
       // randomly chooses up or down
@@ -165,103 +212,121 @@ public class MazeEngine {
 
       if (selector.nextInt(2) % 2 == 0) {
         // checks to confirm the cell you are grabbing isnt null
-        //first checks if in the top row
+        // first checks if in the top row
         if (rowTemp == 0) {
           direction = 1;
         }
-        //then checks if in the bottom row
+        // then checks if in the bottom row
         if (rowTemp == gSize - 1) {
           direction = -1;
         }
-        //checks if the path has already been stepped on
+        // checks if the path has already been stepped on
         if (this.grid[rowTemp + direction][colTemp].getCount() < 1) {
-          //says the path has been walked on and moves it
+          // says the path has been walked on and moves it
           this.grid[rowTemp + direction][colTemp].countUp();
           this.grid[rowTemp + direction][colTemp].setPath(true);
           rowTemp = rowTemp + direction;
         }
-        //if its not moving row its moving columns
+        // if its not moving row its moving columns
       } else {
-        //checks if its in left column
+        // checks if its in left column
         if (colTemp == 0) {
           direction = 1;
         }
-        //checks if its in right column
+        // checks if its in right column
         if (colTemp == gSize - 1) {
           direction = -1;
         }
-        //makes sure the path hasnt already been walked on
+        // makes sure the path hasnt already been walked on
         if (this.grid[rowTemp][colTemp + direction].getCount() < 1) {
-          //moves up count and moves path
-          this.grid[rowTemp ][colTemp+ direction].countUp();
+          // moves up count and moves path
+          this.grid[rowTemp][colTemp + direction].countUp();
           this.grid[rowTemp][colTemp + direction].setPath(true);
           colTemp = colTemp + direction;
         }
 
       }
     }
-    //runs greedy path to connect
-    this.greedyPath(sRow, sRow, rowTemp, colTemp);
+    // runs greedy path to connect
+    if (!this.isFinish) {
+      this.greedyPath(rowTemp, colTemp, fRow, fCol);
+      this.isFinish = true;
+    }
+    this.greedyPath(sRow, sCol, rowTemp, colTemp);
   }
 
-  //gets the cell at a given spot int he grid
-  public MazeCell getCell(int row, int col) {
+  /**
+   *  gets the cell at a given spot int he grid.
+   * @param row 
+   * @param col 
+   * @return grid[row][col]
+   */
+  public final MazeCell getCell(final int row, final int col) {
     return grid[row][col];
   }
 
-  //looks to see if you won
-  public boolean foundEnd(int row, int col) {
+  /**
+   * looks to see if you won.
+   * @param row 
+   * @param col 
+   * @return true
+   */
+  public final boolean foundEnd(final int row, final int col) {
     if (grid[row][col].isFinish()) {
       return true;
     }
     return false;
   }
 
-  //used to look around the selected cell if its been explored yet or not
-  //cant move to if it the cell hasnt been explored
-  public boolean lookAround(int r, int c) {
-    //looks at the cell put in
-    if (grid[r][c].isExplored())
+  /**
+   *  used to look around the selected cell if its been explored yet or not
+   *  cant move to if it the cell hasnt been explored.
+   * @param r 
+   * @param c 
+   * @return true
+   */ 
+  public final boolean lookAround(final int r, final int c) {
+    // looks at the cell put in
+    if (grid[r][c].isExplored()) {
       return true;
-    //checks to ensure you are not in the top row
+    }
+    // checks to ensure you are not in the top row
     if (r != 0) {
       if (grid[r - 1][c].isExplored()) {
-        //sets the cell to explored and returns it is
+        // sets the cell to explored and returns it is
         grid[r][c].setExplored(true);
         return true;
       }
     }
-    //checks to make sure you are not in the bottom row
+    // checks to make sure you are not in the bottom row
     if (r != gSize - 1) {
       if (grid[r + 1][c].isExplored()) {
-        //sets the cell to explored and returns it is
+        // sets the cell to explored and returns it is
         grid[r][c].setExplored(true);
         return true;
       }
     }
 
-    //checks to make sure you are not in the right column
+    // checks to make sure you are not in the right column
     if (c != gSize - 1) {
       if (grid[r][c + 1].isExplored()) {
-      //sets the cell to explored and returns it is
+        // sets the cell to explored and returns it is
         grid[r][c].setExplored(true);
         return true;
       }
     }
 
-    //checks to make sure you are not in the left column
+    // checks to make sure you are not in the left column
     if (c != 0) {
       if (grid[r][c - 1].isExplored()) {
-        //sets the cell to explored and returns it is
+        // sets the cell to explored and returns it is
         grid[r][c].setExplored(true);
         return true;
       }
     }
 
-    //returns false if its not near a cell thats been explored
+    // returns false if its not near a cell thats been explored
     return false;
   }
-  
- 
-  
+
 }

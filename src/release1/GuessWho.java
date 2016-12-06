@@ -112,6 +112,38 @@ public class GuessWho {
    * Integer for height.
    */
   private final int height;
+  /**
+   * Magic Number.
+   */
+  public static final int THREE = 3;
+  /**
+   * Magic Number.
+   */
+  public static final int EIGHT = 8;
+  /**
+   * Magic Number.
+   */
+  public static final int THIRTY = 30;
+  /**
+   * Magic Number.
+   */
+  public static final int FOUR = 4;
+  /**
+   * Magic Number.
+   */
+  public static final int FIVE = 5;
+  /**
+   * Magic Number.
+   */
+  public static final int FOURTY = 40;
+  /**
+   * Magic Number.
+   */
+  public static final int THIRTYK = 30000;
+  /**
+   * Magic Number.
+   */
+  public static final int EIGHTHUNDRED = 800;
 
   /*****************************************************************
    * A Method that creates a game of guess who.
@@ -141,8 +173,8 @@ public class GuessWho {
 
     // creates Width and Height
 
-    width = 800;
-    height = 800;
+    width = EIGHTHUNDRED;
+    height = EIGHTHUNDRED;
     // builds the questions and the answers
     hairC = new Question("Is the color of their hair ", 
         "Red Black Blonde Brown");
@@ -173,7 +205,7 @@ public class GuessWho {
         frame.dispose();
         guesswho.buildSecond();
       }
-    }, 30000);
+    }, THIRTYK);
 
   }
 
@@ -216,17 +248,17 @@ public class GuessWho {
     final JPanel topPanel = new JPanel();
     final JPanel bottomPanel = new JPanel();
 
-    final int Width = 1000;
-    final int Height = 400;
+    final int width = 1000;
+    final int height = 400;
 
-    frame.setSize(Width, Height);
+    frame.setSize(width, height);
 
     frame.setResizable(false);
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    frame.setLayout(new GridLayout(2, 5));
+    frame.setLayout(new GridLayout(2, FIVE));
 
-    topPanel.setLayout(new GridLayout(1, 5));
-    bottomPanel.setLayout(new GridLayout(1, 5));
+    topPanel.setLayout(new GridLayout(1, FIVE));
+    bottomPanel.setLayout(new GridLayout(1, FIVE));
 
     topPanel.add(new JLabel(new ImageIcon("PattonPic.png")));
     topPanel.add(new JLabel(new ImageIcon("JoshPic.png")));
@@ -237,7 +269,7 @@ public class GuessWho {
     for (int i = 0; i < characters.size(); i++) {
       names = new JLabel(" ", JLabel.CENTER);
       names.setVerticalAlignment(JLabel.TOP);
-      names.setFont(new Font("Serif", Font.BOLD, 40));
+      names.setFont(new Font("Serif", Font.BOLD, FOURTY));
       names.setText(characters.get(i).getName());
       bottomPanel.add(names);
     }
@@ -253,10 +285,10 @@ public class GuessWho {
   private void buildSecond() {
 
     this.secondBuild = new JFrame("Guess Who");
-    quest = new JButton[1][4];
+    quest = new JButton[1][FOUR];
     ButtonListener listener = new ButtonListener();
 
-    this.secondBuild.setSize(width + 8, height + 30);
+    this.secondBuild.setSize(width + EIGHT, height + THIRTY);
 
     this.secondBuild.setResizable(false);
     this.secondBuild.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -269,10 +301,10 @@ public class GuessWho {
       this.secondBuild.add(quest[0][i]);
     }
 
-    quest[0][3] = new JButton();
-    quest[0][3].setText("Would you like to guess?");
-    quest[0][3].addActionListener(listener);
-    this.secondBuild.add(quest[0][3]);
+    quest[0][THREE] = new JButton();
+    quest[0][THREE].setText("Would you like to guess?");
+    quest[0][THREE].addActionListener(listener);
+    this.secondBuild.add(quest[0][THREE]);
 
     JLabel localAnswers = new JLabel("Answers: " + this.enteredAnswers);
 
@@ -287,10 +319,10 @@ public class GuessWho {
   private void buildQuestion(final int input) {
     frame = new JFrame(questions.get(input).getQuestion());
 
-    answers = new JButton[1][4];
+    answers = new JButton[1][FOUR];
     ButtonListener listener = new ButtonListener();
 
-    frame.setSize(width + 8, height + 30);
+    frame.setSize(width + EIGHT, height + THIRTY);
 
     frame.setResizable(false);
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -314,7 +346,7 @@ public class GuessWho {
     answers = new JButton[1][characters.size()];
     ButtonListener listener = new ButtonListener();
 
-    frame.setSize(width + 8, height + 30);
+    frame.setSize(width + EIGHT, height + THIRTY);
 
     frame.setResizable(false);
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -399,9 +431,9 @@ public class GuessWho {
      *            checks for the users mouse click.
      */
     public void actionPerformed(final ActionEvent clicked) {
-      for (int i = 0; i < 3; i++) {
+      for (int i = 0; i < THREE; i++) {
         if (clicked.getSource() == quest[0][i]) {
-          if (filters.get(i) == true) {
+          if (filters.get(i)) {
             guesswho.secondBuild.dispose();
             guesswho.buildQuestion(i);
             currentQuestion = quest[0][i].getText();
@@ -412,13 +444,13 @@ public class GuessWho {
         }
       }
 
-      if (clicked.getSource() == quest[0][3]) {
+      if (clicked.getSource() == quest[0][THREE]) {
         guesswho.secondBuild.dispose();
         guesswho.buildGuess();
-        currentQuestion = quest[0][3].getText();
+        currentQuestion = quest[0][THREE].getText();
       }
 
-      int length = (currentQuestion == nameQ) ? 5 : 4;
+      int length = (currentQuestion == nameQ) ? FIVE : FOUR;
 
       for (int i = 0; i < length; i++) {
         if (clicked.getSource() == answers[0][i]) {

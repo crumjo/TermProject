@@ -10,9 +10,13 @@ import java.util.ArrayList;
  *     ***********************************************************/
 public class Question {
 
-  // a string that holds the question
+  /**
+   * a string that holds the question.
+   */
   private String question;
-  //an arraylist of strings that holds the answers
+  /**
+   * an arraylist of strings that holds the answers.
+   */
   private ArrayList<String> answers;
 
   /*****************************************************************
@@ -32,7 +36,7 @@ public class Question {
    * @param aquestion is the question being asked
    * @param ans a string being split into an arraylist for answers
    *     ***********************************************************/
-  public Question(String aquestion, String ans) {
+  public Question(final String aquestion, final String ans) {
     this.question = aquestion;
     answers = new ArrayList<String>();
     // int for private marker
@@ -50,16 +54,18 @@ public class Question {
   }
 
   /*****************************************************************
-   * A getter method that returns the question.
+   * @return question 
+   *            A getter method that returns the question.
    *****************************************************************/
-  public String getQuestion() {
+  public final String getQuestion() {
     return question;
   }
 
   /*****************************************************************
-   * A getter method that returns an arraylist holding the answers.
+   *@return answers
+   *        A getter method that returns an arraylist holding the answers.
    *****************************************************************/
-  public ArrayList<String> getAnswers() {
+  public final ArrayList<String> getAnswers() {
     return answers;
   }
  

@@ -7,12 +7,12 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+//import javax.swing.JPanel;
 
 
 
 /*****************************************************************
- * @author Patton Finley, Josh Crum, Pual Magee
+ * @author Patton Finley, Josh Crum, Paul Magee
  * 
  * 
  *         A Home Screen for mind games.
@@ -21,16 +21,39 @@ import javax.swing.JPanel;
 public class MainScreen extends JFrame {
 
   private static final long serialVersionUID = 1L;
-  // JFrame frame used for the gui
+  /** 
+   * JFrame frame used for the gui.
+   */
   private JFrame frame;
-  // JButton made to select simon says
+  /**
+   * JButton made to select Simon says.
+   */
   private JButton simonbutton;
-  // JButton made to select guess who
+  /**
+   * JButton made to select guess who.
+   */
   private JButton guessbutton;
-  //JButton made to select maze
+  /**
+   * JButton made to select maze.
+   */
   private JButton mazebutton;
-  // JButton made to select speed typing
+  /**
+   * JButton made to select speed typing.
+   */
   private JButton typebutton;
+  /**
+   * Magic Number.
+   */
+  public static final int EIGHT = 8;
+  /**
+   * Magic Number.
+   */
+  public static final int THIRTY = 30;
+  /**
+   * Magic Number.
+   */
+  public static final int TWENTY = 20;
+
 
   /*****************************************************************
    * A mainScreen constructor used to build the main screen.
@@ -51,7 +74,7 @@ public class MainScreen extends JFrame {
 
     // builds main frame outside
     frame = new JFrame("Mind Games");
-    frame.setSize(width + 8, height + 30);
+    frame.setSize(width + EIGHT, height + THIRTY);
     frame.setResizable(false);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -65,10 +88,10 @@ public class MainScreen extends JFrame {
     typebutton.addActionListener(listener);
 
     // sets button size
-    this.simonbutton.setSize(20, 20);
-    this.guessbutton.setSize(20, 20);
-    this.mazebutton.setSize(20, 20);
-    this.typebutton.setSize(20, 20);
+    this.simonbutton.setSize(TWENTY, TWENTY);
+    this.guessbutton.setSize(TWENTY, TWENTY);
+    this.mazebutton.setSize(TWENTY, TWENTY);
+    this.typebutton.setSize(TWENTY, TWENTY);
 
     // builds mainframe inside
     frame.setLayout(new GridLayout(2, 1));
@@ -86,7 +109,11 @@ public class MainScreen extends JFrame {
    *****************************************************************/
   private class ButtonListener implements ActionListener {
 
-    public void actionPerformed(ActionEvent response) {
+    /**
+     * @param response
+     *          Takes the users mouse click to select game.
+     */
+    public void actionPerformed(final ActionEvent response) {
       // checks simon button
       if (response.getSource() == simonbutton) {
         Simon.simon = new Simon();
