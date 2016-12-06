@@ -19,6 +19,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 public class SpeedTyping {
 
@@ -39,11 +41,10 @@ public class SpeedTyping {
 	private JButton resetButton;
 	private JButton enterButton;
 	
-	private JOptionPane message;
-	
 	private String sentenceToType;
-	
-	private Timer timer;
+
+	private long startTime;
+	private long elapsedTime;
 
 
 
@@ -54,9 +55,6 @@ public class SpeedTyping {
 		this.pronouns = new ArrayList<String>();
 		this.sentence = new ArrayList<String>();
 		this.verbs = new ArrayList<String>();
-		
-		this.message = new JOptionPane();
-		
 		this.sentenceToType = buildSentence();
 
 		this.build();
@@ -66,7 +64,7 @@ public class SpeedTyping {
 	public void build() {
 		KeyListener kListener = null;
 		ButtonListener listener = new ButtonListener();
-		
+
 		Border padding = BorderFactory.createEmptyBorder(10, 10, 10, 10);
 
 		this.frame = new JFrame("Speed Typing");
@@ -79,7 +77,7 @@ public class SpeedTyping {
 		this.typePanel = new JPanel(); //Where to type it.
 		this.typePanel.setLayout(new BorderLayout());
 		this.typePanel.setBorder(padding);
-		
+
 		this.enterPanel = new JPanel();
 		this.enterPanel.setLayout(new BorderLayout());
 		this.enterPanel.setBorder(padding);
@@ -87,22 +85,24 @@ public class SpeedTyping {
 		this.typeField = new JTextField(40); //Insert size of field as number of characters
 		this.typeField.setHorizontalAlignment(JTextField.LEFT);
 		this.typeField.addKeyListener(kListener);
+		DocsListener dl = new DocsListener();
+		this.typeField.getDocument().addDocumentListener(dl);
 
-		this.textField = new JTextArea("Text to type.", 1, 50); //~2X height of JTextField
+		this.textField = new JTextArea("" + this.buildSentence(), 1, 50); //~2X height of JTextField
 		this.textField.setMargin(new Insets(10, 10, 10, 10));
 		this.textField.setEditable(false);
 
-		this.timeField = new JTextArea("24:00", 1, 1); //Same height as textField
+		this.timeField = new JTextArea("Time: ", 1, 11); //Same height as textField
 		this.timeField.setEditable(false);
-		
+
 		this.resetButton = new JButton("Reset"); //Add image here for reset
 		this.resetButton.addActionListener(listener);
-		
+
 		this.enterButton = new JButton("Enter");
-//		this.enterButton.addKeyListener();
+		this.enterButton.addActionListener(listener);
 
 		this.textPanel.add(this.textField, BorderLayout.CENTER);
-		
+
 		this.enterPanel.add(this.enterButton, BorderLayout.CENTER);
 
 		this.typePanel.add(this.typeField, BorderLayout.WEST);
@@ -112,14 +112,14 @@ public class SpeedTyping {
 		this.frame.add(this.textPanel, BorderLayout.NORTH);
 		this.frame.add(this.typePanel, BorderLayout.CENTER);
 		this.frame.add(this.enterPanel, BorderLayout.SOUTH);
-		
+
 		frame.getRootPane().setDefaultButton(this.enterButton);
 
 		frame.pack();
 		frame.setVisible(true);
 	}
-	
-	
+
+
 	public void reset() {
 		this.frame.dispose();
 		new SpeedTyping();
@@ -203,15 +203,17 @@ public class SpeedTyping {
 	}
 
 
-	String checkAccuracy(String given, String target) {
+	String checkAccuracy(String passed, String target) {
 		double accuracy = 0;
 		double numChars = target.length();
 		double count = 0;
 		String temp = "";
 
 		for (int i = 0; i < target.length(); i++) {
-			if (target.charAt(i) == (given.charAt(i))) {
-				count++;
+			if (i < passed.length()) {
+				if (target.charAt(i) == (passed.charAt(i))) {
+					count++;
+				}
 			}
 		}
 
@@ -222,35 +224,62 @@ public class SpeedTyping {
 
 		return temp;
 	}
-	
-	
+
+
+	private class DocsListener implements DocumentListener{
+		public void changedUpdate(DocumentEvent e) {
+
+		}
+		public void removeUpdate(DocumentEvent e) {
+
+		}
+		public void insertUpdate(DocumentEvent e) {
+			warn(e);
+		}
+
+		public void warn(DocumentEvent e ) {
+			if (e.getDocument().getLength() == 1){
+				startTime = System.currentTimeMillis();
+			}
+		}
+	}
+
+
 	private class ButtonListener implements ActionListener {
-		
+
 		public void actionPerformed(final ActionEvent event) {
+
+			if (event.getSource() == enterButton) {
+
+				elapsedTime = System.currentTimeMillis();
+				long totalTime = (elapsedTime - startTime) / 1000;
+
+				String entered = typeField.getText();
+
+				System.out.println(sentenceToType);
+				System.out.println(entered);
+				System.out.println(totalTime);
+
+				String s = checkAccuracy(entered, sentenceToType);
+
+				if (totalTime == 1) {
+					timeField.setText("Time: " + totalTime + 
+							" Second.");
+				} else {
+					timeField.setText("Time: " + totalTime + 
+							" Seconds.");
+
+				}
+				JOptionPane.showMessageDialog(null, s);
+
+			}
+
 			if (event.getSource() == resetButton) {
 				reset();
-				System.out.println("Here");
 			}
-			
-			String entered = typeField.getText();
-			System.out.println(entered);
-			String s = checkAccuracy(sentenceToType, entered);
-			JOptionPane.showMessageDialog(null, s);
-			
-//			System.out.println("Enter key pressed");
-			
+
 		}
-		
-		
-//		public void keyPressed(KeyEvent e) {
-//			
-//			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-//				System.out.println("You have pressed the enter key!");
-//			}
-//			
-//		}
-		
-		
+
 	}
 
 
