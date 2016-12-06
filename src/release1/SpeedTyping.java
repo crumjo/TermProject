@@ -276,6 +276,7 @@ public class SpeedTyping {
 
 			if (event.getSource() == resetButton) {
 				reset();
+				//codeninja 2013 was here
 			}
 
 		}
