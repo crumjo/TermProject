@@ -1,6 +1,7 @@
 package release1;
 
 import java.awt.Font;
+
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,7 +33,7 @@ public class GuessWho {
    */
   private JFrame frame;
   /**
-   * the other frame onject.
+   * the other frame object.
    */
   private JFrame secondBuild;
   /**
