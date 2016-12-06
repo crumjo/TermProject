@@ -258,7 +258,6 @@ public class SpeedTyping {
 
 				System.out.println(sentenceToType);
 				System.out.println(entered);
-				System.out.println(totalTime);
 
 				String s = checkAccuracy(entered, sentenceToType);
 
