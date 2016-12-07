@@ -312,36 +312,60 @@ public class SpeedTyping {
 				String entered = typeField.getText();
 				String s = checkAccuracy(entered, sentenceToType);
 
-				if (totalTime == 1) {
-					timeField.setText("Time: " + totalTime 
-							+ " Second.");
+				if (entered.equals("")) {
+					timeField.setText("Time: NA");
+					timeField.setBackground(Color.RED);
+
+					int gameOver = JOptionPane.showConfirmDialog(null, 
+							s + "\nWould You Like To Play Again?", 
+							"Game Over.", 
+							JOptionPane.YES_NO_OPTION, 
+							JOptionPane.QUESTION_MESSAGE);
+
+					enterButton.setEnabled(false);
+
+					if (gameOver == JOptionPane.NO_OPTION) {
+						frame.dispose();
+						new MainScreen();
+					}
+
+					if (gameOver == JOptionPane.YES_OPTION) {
+						reset();
+					}
+
 				} else {
-					timeField.setText("Time: " + totalTime 
-							+ " Seconds.");
+
+					if (totalTime == 1) {
+						timeField.setText("Time: " + totalTime 
+								+ " Second.");
+					} else {
+						timeField.setText("Time: " + totalTime 
+								+ " Seconds.");
+
+					}
+
+					if (totalTime <= 10) {
+						timeField.setBackground(Color.green);
+					} else if (totalTime <= 15) {
+						timeField.setBackground(Color.yellow);
+					} else {
+						timeField.setBackground(Color.red);
+					}
+
+					int gameOver = JOptionPane.showConfirmDialog(null, 
+							s + "\nWould You Like To Play Again?", 
+							"Game Over.", 
+							JOptionPane.YES_NO_OPTION, 
+							JOptionPane.QUESTION_MESSAGE);
+
+					enterButton.setEnabled(false);
+
+					if (gameOver == JOptionPane.NO_OPTION) {
+						frame.dispose();
+						new MainScreen();
+					}
 
 				}
-
-				if (totalTime <= 10) {
-					timeField.setBackground(Color.green);
-				} else if (totalTime <= 15) {
-					timeField.setBackground(Color.yellow);
-				} else {
-					timeField.setBackground(Color.red);
-				}
-
-				int gameOver = JOptionPane.showConfirmDialog(null, 
-						s + "\nWould You Like To Play Again?", 
-						"Game Over.", 
-						JOptionPane.YES_NO_OPTION, 
-						JOptionPane.QUESTION_MESSAGE);
-
-				enterButton.setEnabled(false);
-
-				if (gameOver == JOptionPane.NO_OPTION) {
-					frame.dispose();
-					new MainScreen();
-				}
-
 			}
 
 			if (event.getSource() == resetButton) {
