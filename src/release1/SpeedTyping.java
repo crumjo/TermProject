@@ -7,6 +7,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
@@ -24,10 +28,10 @@ import javax.swing.event.DocumentListener;
 
 public class SpeedTyping {
 
+	private ArrayList<String> adjectives;
 	private ArrayList<String> adverbs;
 	private ArrayList<String> nouns;
 	private ArrayList<String> other;
-	private ArrayList<String> pronouns;
 	private ArrayList<String> sentence;
 	private ArrayList<String> verbs;
 
@@ -40,7 +44,7 @@ public class SpeedTyping {
 	private JTextField typeField;
 	private JButton resetButton;
 	private JButton enterButton;
-	
+
 	private String sentenceToType;
 
 	private long startTime;
@@ -49,19 +53,31 @@ public class SpeedTyping {
 
 
 	public SpeedTyping() {
+
+		this.adjectives = new ArrayList<String>();
 		this.adverbs = new ArrayList<String>();
 		this.nouns = new ArrayList<String>();
 		this.other = new ArrayList<String>();
-		this.pronouns = new ArrayList<String>();
 		this.sentence = new ArrayList<String>();
 		this.verbs = new ArrayList<String>();
-		this.sentenceToType = buildSentence();
 
 		this.build();
 	}
 
 
 	public void build() {
+		
+		try {
+			this.buildArrayList("adjective", "Adjectives.txt");
+			this.buildArrayList("adverb", "Adverbs.txt");
+			this.buildArrayList("noun", "Nouns.txt");
+			this.buildArrayList("verb", "Verbs.txt");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		this.sentenceToType = buildSentence();
+		
 		KeyListener kListener = null;
 		ButtonListener listener = new ButtonListener();
 
@@ -88,7 +104,7 @@ public class SpeedTyping {
 		DocsListener dl = new DocsListener();
 		this.typeField.getDocument().addDocumentListener(dl);
 
-		this.textField = new JTextArea("" + this.buildSentence(), 1, 50); //~2X height of JTextField
+		this.textField = new JTextArea(this.sentenceToType, 1, 50); //~2X height of JTextField
 		this.textField.setMargin(new Insets(10, 10, 10, 10));
 		this.textField.setEditable(false);
 
@@ -126,40 +142,61 @@ public class SpeedTyping {
 	}
 
 
-	private void buildList(ArrayList list, String word) {
-		if (list.equals(adverbs)) {
+	public void buildArrayList(String listType, String fileName) 
+			throws IOException {
+
+		BufferedReader reader = 
+				new BufferedReader(new FileReader(fileName));
+
+		String line;
+
+		while ((line = reader.readLine()) != null) {
+			buildList(listType, line);
+
+		}
+
+		reader.close();
+	}
+
+
+	private void buildList(String listType, String word) {
+
+		if (listType == "adjective") {
+			adjectives.add(word);
+		}
+
+		if (listType == "adverb") {
 			adverbs.add(word);
 		}
 
-		if (list.equals(nouns)) {
+		if (listType == "noun") {
 			nouns.add(word);
 		}
 
-		if (list.equals(other)) {
+		if (listType == "other") {
 			other.add(word);
 		}
 
-		if (list.equals(pronouns)) {
-			pronouns.add(word);
-		}
-
-		if (list.equals(verbs)) {
+		if (listType == "verb") {
 			verbs.add(word);
 		}
 	}
 
 
 	private String buildSentence() {
+
 		String temp = "";
+		String adjective = this.pullWord(adjectives);
 		String adverb = this.pullWord(this.adverbs);
-		String noun = this.pullWord(this.nouns);
+		String noun1 = this.pullWord(this.nouns);
+		String noun2 = this.pullWord(this.nouns);
+		String noun3 = this.pullWord(this.nouns);
 		String other = this.pullWord(this.other);
-		String pronoun = this.pullWord(this.pronouns);
 		String verb = this.pullWord(this.verbs);
 
 		//Make this more intricate at some point.
-		temp = "The " + adverb + " " + noun + " " + verb + " to the " + 
-				noun + " to get a " + noun + ".";
+		temp = "The " + adverb + " " + adjective + " " + noun1 + " " + 
+				verb + " to the " + noun2 + " to get a " + noun3 + ".";
 
 		return temp;
 	}
