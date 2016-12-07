@@ -67,7 +67,7 @@ public class SpeedTyping {
 
 
 	public void build() {
-		
+
 		try {
 			this.buildArrayList("adjective", "Adjectives.txt");
 			this.buildArrayList("adverb", "Adverbs.txt");
@@ -76,9 +76,9 @@ public class SpeedTyping {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		this.sentenceToType = buildSentence();
-		
+
 		KeyListener kListener = null;
 		ButtonListener listener = new ButtonListener();
 
@@ -154,7 +154,6 @@ public class SpeedTyping {
 
 		while ((line = reader.readLine()) != null) {
 			buildList(listType, line);
-
 		}
 
 		reader.close();
@@ -304,7 +303,7 @@ public class SpeedTyping {
 							" Seconds.");
 
 				}
-				
+
 				if (totalTime <= 10) {
 					timeField.setBackground(Color.green);
 				} else if (totalTime <= 15) {
@@ -312,10 +311,17 @@ public class SpeedTyping {
 				} else {
 					timeField.setBackground(Color.red);
 				}
-				
-				JOptionPane.showMessageDialog(null, s);
-				
+
+				int gameOver = JOptionPane.showConfirmDialog(null, s + "\nWould You " 
+						+ "Like To Play Again?", "Game Over.", JOptionPane.YES_NO_OPTION, 
+				        JOptionPane.QUESTION_MESSAGE);
+
 				enterButton.setEnabled(false);
+				
+				if (gameOver == JOptionPane.NO_OPTION) {
+					frame.dispose();
+					new MainScreen();
+				}
 
 			}
 

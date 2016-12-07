@@ -131,8 +131,8 @@ public class MainScreen extends JFrame {
       }
       // checks speedtyping button
       if (response.getSource() == typebutton) {
-        JOptionPane.showMessageDialog(frame, "Speed typing is " 
-            + "coming soon!");
+        new SpeedTyping();
+        frame.dispose();
       }
     }
   }
