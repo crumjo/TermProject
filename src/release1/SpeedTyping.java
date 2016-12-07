@@ -28,7 +28,6 @@ public class SpeedTyping {
 	private ArrayList<String> adjectives;
 	private ArrayList<String> adverbs;
 	private ArrayList<String> nouns;
-	private ArrayList<String> sentence;
 	private ArrayList<String> verbs;
 
 	private JFrame frame;
@@ -53,7 +52,6 @@ public class SpeedTyping {
 		this.adjectives = new ArrayList<String>();
 		this.adverbs = new ArrayList<String>();
 		this.nouns = new ArrayList<String>();
-		this.sentence = new ArrayList<String>();
 		this.verbs = new ArrayList<String>();
 
 		this.build();
@@ -185,19 +183,19 @@ public class SpeedTyping {
 
 	private void buildList(String listType, String word) {
 
-		if (listType == "adjective") {
+		if (listType.equals("adjective")) {
 			adjectives.add(word);
 		}
 
-		if (listType == "adverb") {
+		if (listType.equals("adverb")) {
 			adverbs.add(word);
 		}
 
-		if (listType == "noun") {
+		if (listType.equals("noun")) {
 			nouns.add(word);
 		}
 
-		if (listType == "verb") {
+		if (listType.equals("verb")) {
 			verbs.add(word);
 		}
 	}
