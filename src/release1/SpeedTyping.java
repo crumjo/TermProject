@@ -5,16 +5,12 @@ import java.awt.Color;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Timer;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -32,7 +28,6 @@ public class SpeedTyping {
 	private ArrayList<String> adjectives;
 	private ArrayList<String> adverbs;
 	private ArrayList<String> nouns;
-	private ArrayList<String> other;
 	private ArrayList<String> sentence;
 	private ArrayList<String> verbs;
 
@@ -58,7 +53,6 @@ public class SpeedTyping {
 		this.adjectives = new ArrayList<String>();
 		this.adverbs = new ArrayList<String>();
 		this.nouns = new ArrayList<String>();
-		this.other = new ArrayList<String>();
 		this.sentence = new ArrayList<String>();
 		this.verbs = new ArrayList<String>();
 
@@ -66,15 +60,43 @@ public class SpeedTyping {
 	}
 
 
+	public ArrayList<String> getAdjectives() {
+		return adjectives;
+	}
+
+
+	public ArrayList<String> getAdverbs() {
+		return adverbs;
+	}
+
+
+	public ArrayList<String> getNouns() {
+		return nouns;
+	}
+
+
+	public ArrayList<String> getVerbs() {
+		return verbs;
+	}
+
+
 	public void build() {
 
+		int ten = 10;
+		int forty = 40;
+		int fifty = 50;
+
 		try {
+
 			this.buildArrayList("adjective", "Adjectives.txt");
 			this.buildArrayList("adverb", "Adverbs.txt");
 			this.buildArrayList("noun", "Nouns.txt");
 			this.buildArrayList("verb", "Verbs.txt");
+
 		} catch (IOException e) {
+
 			e.printStackTrace();
+
 		}
 
 		this.sentenceToType = buildSentence();
@@ -82,7 +104,8 @@ public class SpeedTyping {
 		KeyListener kListener = null;
 		ButtonListener listener = new ButtonListener();
 
-		Border padding = BorderFactory.createEmptyBorder(10, 10, 10, 10);
+		Border padding = BorderFactory.createEmptyBorder(ten, ten, ten, 
+				ten);
 
 		this.frame = new JFrame("Speed Typing");
 		this.frame.setLayout(new BorderLayout());
@@ -99,18 +122,18 @@ public class SpeedTyping {
 		this.enterPanel.setLayout(new BorderLayout());
 		this.enterPanel.setBorder(padding);
 
-		this.typeField = new JTextField(40);
+		this.typeField = new JTextField(forty);
 		this.typeField.setHorizontalAlignment(JTextField.LEFT);
 		this.typeField.addKeyListener(kListener);
 		DocsListener dl = new DocsListener();
 		this.typeField.getDocument().addDocumentListener(dl);
 
-		this.textField = new JTextArea(this.sentenceToType, 1, 50);
-		this.textField.setMargin(new Insets(10, 10, 10, 10));
+		this.textField = new JTextArea(this.sentenceToType, 1, fifty);
+		this.textField.setMargin(new Insets(ten, ten, ten, ten));
 		this.textField.setEditable(false);
 		this.textField.setBackground(Color.YELLOW);
 
-		this.timeField = new JTextArea("Time: ", 1, 11);
+		this.timeField = new JTextArea("Time: ", 1, ten + 1);
 		this.timeField.setEditable(false);
 
 		this.resetButton = new JButton("Reset");
@@ -174,10 +197,6 @@ public class SpeedTyping {
 			nouns.add(word);
 		}
 
-		if (listType == "other") {
-			other.add(word);
-		}
-
 		if (listType == "verb") {
 			verbs.add(word);
 		}
@@ -192,12 +211,11 @@ public class SpeedTyping {
 		String noun1 = this.pullWord(this.nouns);
 		String noun2 = this.pullWord(this.nouns);
 		String noun3 = this.pullWord(this.nouns);
-		String other = this.pullWord(this.other);
 		String verb = this.pullWord(this.verbs);
 
 		//Make this more intricate at some point.
-		temp = "The " + adverb + " " + adjective + " " + noun1 + " " + 
-				verb + " to the " + noun2 + " to get a " + noun3 + ".";
+		temp = "The " + adverb + " " + adjective + " " + noun1 + " " 
+				+ verb + " to the " + noun2 + " to get a " + noun3 + ".";
 
 		return temp;
 	}
@@ -215,11 +233,10 @@ public class SpeedTyping {
 
 	private void buildFrame() {
 		frame = new JFrame("Speed Typing");
-		final JTextField typingPrompt = new JTextField(sentence.size());
 	}
 
 
-	private Boolean checkLists(ArrayList<String> list) {
+	public Boolean checkLists(ArrayList<String> list) {
 		if (list.size() > 0) {
 			return true;
 		} 
@@ -231,7 +248,7 @@ public class SpeedTyping {
 		Random random = new Random();
 		String temp = "";
 
-		if (this.checkLists(list) == true) {
+		if (this.checkLists(list)) {
 			int length = list.size();
 			int rand = random.nextInt(length);
 			temp = list.get(rand);
@@ -296,11 +313,11 @@ public class SpeedTyping {
 				String s = checkAccuracy(entered, sentenceToType);
 
 				if (totalTime == 1) {
-					timeField.setText("Time: " + totalTime + 
-							" Second.");
+					timeField.setText("Time: " + totalTime 
+							+ " Second.");
 				} else {
-					timeField.setText("Time: " + totalTime + 
-							" Seconds.");
+					timeField.setText("Time: " + totalTime 
+							+ " Seconds.");
 
 				}
 
@@ -319,7 +336,7 @@ public class SpeedTyping {
 						JOptionPane.QUESTION_MESSAGE);
 
 				enterButton.setEnabled(false);
-				
+
 				if (gameOver == JOptionPane.NO_OPTION) {
 					frame.dispose();
 					new MainScreen();
@@ -329,7 +346,6 @@ public class SpeedTyping {
 
 			if (event.getSource() == resetButton) {
 				reset();
-				//codeninja 2013 was here
 			}
 
 		}
