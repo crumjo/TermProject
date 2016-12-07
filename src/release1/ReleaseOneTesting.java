@@ -87,6 +87,7 @@ public class ReleaseOneTesting {
   @Test
   public final void mainMethodScreenTest() {
     Main test = new Main();
+    test.getClass();
     MainScreen testScreen = new MainScreen();
     assertTrue(MainScreen.class.equals(testScreen.getClass()));
   }
@@ -175,9 +176,7 @@ public class ReleaseOneTesting {
   @Test
   public final void testAppendAnswers() {
     GuessWho test = new GuessWho();
-    ArrayList<String> testList = new ArrayList<String>();
     test.appendAnswers("hi");
-    testList.add("hi");
   }
   
   

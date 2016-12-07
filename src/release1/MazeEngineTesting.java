@@ -10,18 +10,18 @@ package release1;
  *
  */
 public class MazeEngineTesting {
-  
+
 	/**
 	 * Magic Number.
 	 */
-	  public static final int FIVE = 5;
-	
+	public static final int FIVE = 5;
+
 	/**
 	 * Constructor Test.
 	 */
-  public final void constructerTest() {
-   MazeEngine test = new MazeEngine(FIVE);
-   
-  }
- 
+	public final void constructerTest() {
+		new MazeEngine(FIVE);
+
+	}
+
 }

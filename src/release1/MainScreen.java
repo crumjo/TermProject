@@ -121,12 +121,12 @@ public class MainScreen extends JFrame {
       }
       // checks guesswho button
       if (response.getSource() == guessbutton) {
-        GuessWho.guesswho = new GuessWho();
+        new GuessWho();
         frame.dispose();
       }
       // checks maze button
       if (response.getSource() == mazebutton) {
-        MazePanel panel = new MazePanel();
+        new MazePanel();
         frame.dispose();
       }
       // checks speedtyping button
