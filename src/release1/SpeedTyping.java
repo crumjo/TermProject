@@ -371,9 +371,7 @@ public class SpeedTyping {
 			if (event.getSource() == resetButton) {
 				reset();
 			}
-
 		}
-
 	}
 
 
