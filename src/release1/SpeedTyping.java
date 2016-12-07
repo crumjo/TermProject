@@ -312,9 +312,11 @@ public class SpeedTyping {
 					timeField.setBackground(Color.red);
 				}
 
-				int gameOver = JOptionPane.showConfirmDialog(null, s + "\nWould You " 
-						+ "Like To Play Again?", "Game Over.", JOptionPane.YES_NO_OPTION, 
-				        JOptionPane.QUESTION_MESSAGE);
+				int gameOver = JOptionPane.showConfirmDialog(null, 
+						s + "\nWould You Like To Play Again?", 
+						"Game Over.", 
+						JOptionPane.YES_NO_OPTION, 
+						JOptionPane.QUESTION_MESSAGE);
 
 				enterButton.setEnabled(false);
 				
