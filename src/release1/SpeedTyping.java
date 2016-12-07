@@ -1,6 +1,7 @@
 package release1;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -86,11 +87,11 @@ public class SpeedTyping {
 		this.frame = new JFrame("Speed Typing");
 		this.frame.setLayout(new BorderLayout());
 
-		this.textPanel = new JPanel(); //What to type.
+		this.textPanel = new JPanel();
 		this.textPanel.setLayout(new BorderLayout());
 		this.textPanel.setBorder(padding);
 
-		this.typePanel = new JPanel(); //Where to type it.
+		this.typePanel = new JPanel();
 		this.typePanel.setLayout(new BorderLayout());
 		this.typePanel.setBorder(padding);
 
@@ -98,20 +99,21 @@ public class SpeedTyping {
 		this.enterPanel.setLayout(new BorderLayout());
 		this.enterPanel.setBorder(padding);
 
-		this.typeField = new JTextField(40); //Insert size of field as number of characters
+		this.typeField = new JTextField(40);
 		this.typeField.setHorizontalAlignment(JTextField.LEFT);
 		this.typeField.addKeyListener(kListener);
 		DocsListener dl = new DocsListener();
 		this.typeField.getDocument().addDocumentListener(dl);
 
-		this.textField = new JTextArea(this.sentenceToType, 1, 50); //~2X height of JTextField
+		this.textField = new JTextArea(this.sentenceToType, 1, 50);
 		this.textField.setMargin(new Insets(10, 10, 10, 10));
 		this.textField.setEditable(false);
+		this.textField.setBackground(Color.YELLOW);
 
-		this.timeField = new JTextArea("Time: ", 1, 11); //Same height as textField
+		this.timeField = new JTextArea("Time: ", 1, 11);
 		this.timeField.setEditable(false);
 
-		this.resetButton = new JButton("Reset"); //Add image here for reset
+		this.resetButton = new JButton("Reset");
 		this.resetButton.addActionListener(listener);
 
 		this.enterButton = new JButton("Enter");
@@ -292,10 +294,6 @@ public class SpeedTyping {
 				long totalTime = (elapsedTime - startTime) / 1000;
 
 				String entered = typeField.getText();
-
-				System.out.println(sentenceToType);
-				System.out.println(entered);
-
 				String s = checkAccuracy(entered, sentenceToType);
 
 				if (totalTime == 1) {
@@ -306,7 +304,18 @@ public class SpeedTyping {
 							" Seconds.");
 
 				}
+				
+				if (totalTime <= 10) {
+					timeField.setBackground(Color.green);
+				} else if (totalTime <= 15) {
+					timeField.setBackground(Color.yellow);
+				} else {
+					timeField.setBackground(Color.red);
+				}
+				
 				JOptionPane.showMessageDialog(null, s);
+				
+				enterButton.setEnabled(false);
 
 			}
 
