@@ -172,7 +172,7 @@ public class GuessWho {
     // create the pictures
 
     // creates Width and Height
-
+    guesswho = this;
     width = EIGHTHUNDRED;
     height = EIGHTHUNDRED;
     // builds the questions and the answers
