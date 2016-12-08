@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
- * this class is real aMAZING, its the gui for maze 
+ * this class is real aMAZING, its the gui for maze.
  * @author Patton Finley, Josh Crum, Paul Magee
  *
  */

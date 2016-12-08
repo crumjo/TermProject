@@ -33,15 +33,15 @@ public class MazeEngine {
    */
   private int fCol;
   /**
-   * 
+   * boolean isFinish.
    */
   private boolean isFinish;
   /**
-   * 
+   * Magic Number.
    */
   public static final int TEN = 10;
   /**
-   *  builds a defualt array of cells as 10/10.
+   *  builds a default array of cells as 10/10.
    */
   public MazeEngine() {
     gSize = TEN;
@@ -53,7 +53,7 @@ public class MazeEngine {
   }
 
   /**
-   * 
+   * The MazeEngine constructor.
    * @param size 
    */
   public MazeEngine(final int size) {
@@ -76,7 +76,7 @@ public class MazeEngine {
   }
 
   /**
-   * 
+   * Method to build the grid.
    */
   private void buildGrid() {
     // nested for loops to make its slot a cell
@@ -186,7 +186,7 @@ public class MazeEngine {
   }
 
   /**
-   * 
+   * Method to build the path.
    */
   private void buildPath() {
     // picks what direction to move

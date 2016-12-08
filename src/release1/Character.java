@@ -38,21 +38,21 @@ public class Character {
   /*****************************************************************
    * A character constructor method to make a customized character.
    * 
-   * @param name
+   * @param cName
    *          the name of the character
-   * @param hair
+   * @param cHair
    *          the length of the hair of the character
-   * @param eyes
+   * @param cEyes
    *          the color of the eyes of the character
-   * @param hairColor
+   * @param cHairColor
    *          the color of the hair of the character
    *     ***********************************************************/
-  public Character(final String name, final String hair, final String eyes, 
-      final String hairColor) {
-    this.name = name;
-    this.hair = hair;
-    this.eyes = eyes;
-    this.hairColor = hairColor;
+  public Character(final String cName, final String cHair, final String cEyes, 
+      final String cHairColor) {
+    this.name = cName;
+    this.hair = cHair;
+    this.eyes = cEyes;
+    this.hairColor = cHairColor;
   }
 
   /*****************************************************************

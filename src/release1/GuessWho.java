@@ -27,7 +27,7 @@ public class GuessWho {
   /**
    * 
    */
-  public static GuessWho guesswho;
+  private static GuessWho guesswho;
   /**
    * Frame object.
    */
@@ -248,10 +248,10 @@ public class GuessWho {
     final JPanel topPanel = new JPanel();
     final JPanel bottomPanel = new JPanel();
 
-    final int width = 1000;
-    final int height = 400;
+    final int bWidth = 1000;
+    final int bHeight = 400;
 
-    frame.setSize(width, height);
+    frame.setSize(bWidth, bHeight);
 
     frame.setResizable(false);
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

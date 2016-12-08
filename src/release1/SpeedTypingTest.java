@@ -1,83 +1,138 @@
 package release1;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+
+//import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
 import org.junit.Test;
-
+/**
+ * 
+ * @author Patton Finley, Josh Crum, Paul Magee
+ *
+ */
 public class SpeedTypingTest {
 	
+	/**
+	 * Magic Number for Delta.
+	 */
 	private static final double DELTA = 1e-15;
+	/**
+	 * Magic Number.
+	 */
+	public static final int SIXEIGHTNINE = 689;
+	/**
+	 * Magic Number.
+	 */
+	public static final int THREESEVENONENINE = 3719;
+	/**
+	 * Magic Number.
+	 */
+	public static final int TEN = 10;
+	/**
+	 * Magic Number.
+	 */
+	public static final double TENONEONEONEONE = 10.1111;
+	/**
+	 * Magic Number.
+	 */
+	public static final int FIVEEIGHTSIXFIVE = 5865;
+	/**
+	 * Magic Number.
+	 */
+	public static final double TENONEONE = 10.11;
+	/**
+	 * Magic Number.
+	 */
+	public static final int ONESIXEIGHT = 168;
 	
-	
-
+	/**
+	 * Constructor Test 1.
+	 */
 	@Test
-	public void constructorTest1() {
+	public final void constructorTest1() {
 		SpeedTyping test = new SpeedTyping();
-		assertEquals(689, test.getAdjectives().size());
+		assertEquals(SIXEIGHTNINE, test.getAdjectives().size());
 	}
 	
-	
+	/**
+	 * Constructor Test 2.
+	 */
 	@Test
-	public void constructorTest2() {
+	public final void constructorTest2() {
 		SpeedTyping test = new SpeedTyping();
-		assertEquals(168, test.getAdverbs().size());
+		assertEquals(ONESIXEIGHT, test.getAdverbs().size());
 	}
 	
-	
+	/**
+	 * Constructor Test 3.
+	 */
 	@Test
-	public void constructorTest3() {
+	public final void constructorTest3() {
 		SpeedTyping test = new SpeedTyping();
-		assertEquals(5865, test.getNouns().size());
+		assertEquals(FIVEEIGHTSIXFIVE, test.getNouns().size());
 	}
 	
-	
+	/**
+	 * Constructor Test 4.
+	 */
 	@Test
-	public void constructorTest4() {
+	public final void constructorTest4() {
 		SpeedTyping test = new SpeedTyping();
-		assertEquals(3719, test.getVerbs().size());
+		assertEquals(THREESEVENONENINE, test.getVerbs().size());
 	}
 	
-	
+	/**
+	 * Check List Test.
+	 */
 	@Test
-	public void checkListTest() {
+	public final void checkListTest() {
 		SpeedTyping test = new SpeedTyping();
 		ArrayList<String> testList = new ArrayList<String>();
 		assertFalse(test.checkLists(testList));
 	}
 	
-	
-	@Test(expected=IllegalArgumentException.class)
-	public void roundTest1() {
+	/**
+	 * Round Test 1.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public final void roundTest1() {
 		SpeedTyping test = new SpeedTyping();
-		test.round(10, -1);
+		test.round(TEN, -1);
 	}
-	
+	/**
+	 * Round Test 2.
+	 */
 	@Test
-	public void roundTest2() {
+	public final void roundTest2() {
 		SpeedTyping test = new SpeedTyping();
-		assertEquals(test.round(10, 1), 10, DELTA);
+		assertEquals(test.round(TEN, 1), TEN, DELTA);
 	}
-	
+	/**
+	 * Round Test 3.
+	 */
 	@Test
-	public void roundTest3() {
+	public final void roundTest3() {
 		SpeedTyping test = new SpeedTyping();
-		assertEquals(test.round(10.1111, 2), 10.11, DELTA);
+		assertEquals(test.round(TENONEONEONEONE, 2), TENONEONE, DELTA);
 	}
-	
-	
+	/**
+	 * Check Accuracy Test 1.
+	 */
 	@Test
-	public void checkAccuracyTest1() {
+	public final void checkAccuracyTest1() {
 		SpeedTyping test = new SpeedTyping();
 		String target = "Target";
 		String entered = "Targex";
 		assertEquals("83.33%", test.checkAccuracy(entered, target));
 	}
-	
-	
+	/**
+	 * Check Accuracy Test 2.
+	 */
 	@Test
-	public void checkAccuracyTest2() {
+	public final void checkAccuracyTest2() {
 		SpeedTyping test = new SpeedTyping();
 		String target = "Target";
 		String entered = "Target";

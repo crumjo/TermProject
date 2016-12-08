@@ -31,7 +31,7 @@ public class MazeCell {
    */
   private int count;
   /**
-   * 
+   * MazeCell constructor.
    */
   public MazeCell() {
     isStart = false;
@@ -51,10 +51,10 @@ public class MazeCell {
   
   /**
    * sets the value of start.
-   * @param isStart 
+   * @param sIsStart 
    */
-  public final void setStart(final boolean isStart) {
-    this.isStart = isStart;
+  public final void setStart(final boolean sIsStart) {
+    this.isStart = sIsStart;
   }
   
   /**
@@ -67,10 +67,10 @@ public class MazeCell {
 
   /**
    * sets the value of finish.
-   * @param isFinish 
+   * @param sIsFinish 
    */
-  public final void setFinish(final boolean isFinish) {
-    this.isFinish = isFinish;
+  public final void setFinish(final boolean sIsFinish) {
+    this.isFinish = sIsFinish;
   }
 
   /**
@@ -83,10 +83,10 @@ public class MazeCell {
 
   /**
    * sets the value of wall.
-   * @param isPath 
+   * @param sIsPath 
    */
-  public final void setPath(final boolean isPath) {
-    this.isPath = isPath;
+  public final void setPath(final boolean sIsPath) {
+    this.isPath = sIsPath;
   }
 
   /**
@@ -99,10 +99,10 @@ public class MazeCell {
   
   /**
    * sets the cell if it has been explored.
-   * @param isExplored 
+   * @param sIsExplored 
    */
-  public final void setExplored(final boolean isExplored) {
-    this.isExplored = isExplored;
+  public final void setExplored(final boolean sIsExplored) {
+    this.isExplored = sIsExplored;
   }
 
   /**

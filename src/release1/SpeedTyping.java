@@ -23,30 +23,108 @@ import javax.swing.border.Border;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+/**
+ * 
+ * @author Patton Finley, Josh Crum, Paul Magee
+ *
+ */
 public class SpeedTyping {
 
+	/**
+	 * Adjectives arraylist.
+	 */
 	private ArrayList<String> adjectives;
+	/**
+	 * Adverbs arraylist.
+	 */
 	private ArrayList<String> adverbs;
+	/**
+	 * Nouns arraylist.
+	 */
 	private ArrayList<String> nouns;
+	/**
+	 * Verbs arraylist.
+	 */
 	private ArrayList<String> verbs;
 
+	/**
+	 * Frame object.
+	 */
 	private JFrame frame;
+	/**
+	 * textPanel object.
+	 */
 	private JPanel textPanel;
+	/**
+	 * typePanel object.
+	 */
 	private JPanel typePanel;
+	/**
+	 * enterPanel.
+	 */
 	private JPanel enterPanel;
+	/**
+	 * textField object.
+	 */
 	private JTextArea textField;
+	/**
+	 * timeField object.
+	 */
 	private JTextArea timeField;
+	/**
+	 * typeField object.
+	 */
 	private JTextField typeField;
+	/**
+	 * resetButton object.
+	 */
 	private JButton resetButton;
+	/**
+	 * enterButton object.
+	 */
 	private JButton enterButton;
 
+	/**
+	 * String for sentenceToType.
+	 */
 	private String sentenceToType;
 
+	/**
+	 * Long for the startTime.
+	 */
 	private long startTime;
+	/**
+	 * Long for the eslapsedTime.
+	 */
 	private long elapsedTime;
+	/**
+	 * Magic Number.
+	 */
+	public static final int TEN = 10;
+	/**
+	 * Magic Number.
+	 */
+	public static final int FOURTY = 40;
+	/**
+	 * Magic Number.
+	 */
+	public static final int FIFTY = 50;
+	/**
+	 * Magic Number.
+	 */
+	public static final int HUNDRED = 100;
+	/**
+	 * Magic Number.
+	 */
+	public static final int THOUSAND = 1000;
+	/**
+	 * Magic Number.
+	 */
+	public static final int FIFTEEN = 15;
 
-
-
+	/**
+	 * SpeedTyping Constructor.
+	 */
 	public SpeedTyping() {
 
 		this.adjectives = new ArrayList<String>();
@@ -57,32 +135,42 @@ public class SpeedTyping {
 		this.build();
 	}
 
-
-	public ArrayList<String> getAdjectives() {
+	/**
+	 * To get the adjectives.
+	 * @return adjectives 
+	 */
+	public final ArrayList<String> getAdjectives() {
 		return adjectives;
 	}
 
-
-	public ArrayList<String> getAdverbs() {
+	/**
+	 * To get the adverbs.
+	 * @return adverbs 
+	 */
+	public final ArrayList<String> getAdverbs() {
 		return adverbs;
 	}
 
-
-	public ArrayList<String> getNouns() {
+	/**
+	 * To get the nouns.
+	 * @return nouns 
+	 */
+	public final ArrayList<String> getNouns() {
 		return nouns;
 	}
 
-
-	public ArrayList<String> getVerbs() {
+	/**
+	 * To get the verbs.
+	 * @return verbs 
+	 */
+	public final ArrayList<String> getVerbs() {
 		return verbs;
 	}
-
-
-	public void build() {
-
-		int ten = 10;
-		int forty = 40;
-		int fifty = 50;
+	
+	/**
+	 * Build method.
+	 */
+	public final void build() {
 
 		try {
 
@@ -102,8 +190,8 @@ public class SpeedTyping {
 		KeyListener kListener = null;
 		ButtonListener listener = new ButtonListener();
 
-		Border padding = BorderFactory.createEmptyBorder(ten, ten, ten, 
-				ten);
+		Border padding = BorderFactory.createEmptyBorder(TEN, TEN, TEN, 
+				TEN);
 
 		this.frame = new JFrame("Speed Typing");
 		this.frame.setLayout(new BorderLayout());
@@ -120,18 +208,18 @@ public class SpeedTyping {
 		this.enterPanel.setLayout(new BorderLayout());
 		this.enterPanel.setBorder(padding);
 
-		this.typeField = new JTextField(forty);
+		this.typeField = new JTextField(FOURTY);
 		this.typeField.setHorizontalAlignment(JTextField.LEFT);
 		this.typeField.addKeyListener(kListener);
 		DocsListener dl = new DocsListener();
 		this.typeField.getDocument().addDocumentListener(dl);
 
-		this.textField = new JTextArea(this.sentenceToType, 1, fifty);
-		this.textField.setMargin(new Insets(ten, ten, ten, ten));
+		this.textField = new JTextArea(this.sentenceToType, 1, FIFTY);
+		this.textField.setMargin(new Insets(TEN, TEN, TEN, TEN));
 		this.textField.setEditable(false);
 		this.textField.setBackground(Color.YELLOW);
 
-		this.timeField = new JTextArea("Time: ", 1, ten + 1);
+		this.timeField = new JTextArea("Time: ", 1, TEN + 1);
 		this.timeField.setEditable(false);
 
 		this.resetButton = new JButton("Reset");
@@ -158,14 +246,22 @@ public class SpeedTyping {
 		frame.setVisible(true);
 	}
 
-
-	public void reset() {
+	/**
+	 * Reset method.
+	 */
+	public final void reset() {
 		this.frame.dispose();
 		new SpeedTyping();
 	}
 
-
-	public void buildArrayList(String listType, String fileName) 
+	/**
+	 * To build the arraylist.
+	 * @param listType 
+	 * @param fileName 
+	 * @throws IOException 
+	 */
+	public final void buildArrayList(final String listType,
+			final String fileName) 
 			throws IOException {
 
 		BufferedReader reader = 
@@ -180,8 +276,12 @@ public class SpeedTyping {
 		reader.close();
 	}
 
-
-	private void buildList(String listType, String word) {
+	/**
+	 * To build the list.
+	 * @param listType  
+	 * @param word 
+	 */
+	private void buildList(final String listType, final String word) {
 
 		if (listType.equals("adjective")) {
 			adjectives.add(word);
@@ -200,7 +300,10 @@ public class SpeedTyping {
 		}
 	}
 
-
+	/**
+	 * To build the sentence.
+	 * @return temp 
+	 */
 	private String buildSentence() {
 
 		String temp = "";
@@ -218,31 +321,48 @@ public class SpeedTyping {
 		return temp;
 	}
 
+	/**
+	 * To round off the time.
+	 * @param value 
+	 * @param places 
+	 * @return round 
+	 */
+	public final double round(double value, final int places) {
+		if (places < 0) {
+			throw new IllegalArgumentException();
+		}
 
-	public double round(double value, int places) {
-		if (places < 0) throw new IllegalArgumentException();
-
-		long factor = (long) Math.pow(10, places);
+		long factor = (long) Math.pow(TEN, places);
 		value = value * factor;
 		long tmp = Math.round(value);
 		return (double) tmp / factor;
 	}
 
-
+	/**
+	 * To build the frame.
+	 */
 	private void buildFrame() {
 		frame = new JFrame("Speed Typing");
 	}
 
-
-	public Boolean checkLists(ArrayList<String> list) {
+	/**
+	 * To check the list.
+	 * @param list 
+	 * @return true or false 
+	 */
+	public final Boolean checkLists(final ArrayList<String> list) {
 		if (list.size() > 0) {
 			return true;
 		} 
 		return false;
 	}
 
-
-	public String pullWord(ArrayList<String> list) {
+	/**
+	 * To pull the words.
+	 * @param list 
+	 * @return temp 
+	 */
+	public final String pullWord(final ArrayList<String> list) {
 		Random random = new Random();
 		String temp = "";
 
@@ -255,8 +375,13 @@ public class SpeedTyping {
 		return temp;
 	}
 
-
-	String checkAccuracy(String passed, String target) {
+	/**
+	 * To check the accuracy of the player.
+	 * @param passed 
+	 * @param target 
+	 * @return temp 
+	 */
+	final String checkAccuracy(final String passed, final String target) {
 		double accuracy = 0;
 		double numChars = target.length();
 		double count = 0;
@@ -270,7 +395,7 @@ public class SpeedTyping {
 			}
 		}
 
-		accuracy = (count / numChars) * 100; 
+		accuracy = (count / numChars) * HUNDRED; 
 		accuracy = this.round(accuracy, 2);
 
 		temp += accuracy + "%";
@@ -278,34 +403,56 @@ public class SpeedTyping {
 		return temp;
 	}
 
-
-	private class DocsListener implements DocumentListener{
-		public void changedUpdate(DocumentEvent e) {
+	/**
+	 * To listen to the player.
+	 * @author Patton Finley, Josh Crum, Pual Magee
+	 *
+	 */
+	private class DocsListener implements DocumentListener {
+		/**
+		 * @param e 
+		 */
+		public void changedUpdate(final DocumentEvent e) {
 
 		}
-		public void removeUpdate(DocumentEvent e) {
+		/**
+		 * @param e 
+		 */
+		public void removeUpdate(final DocumentEvent e) {
 
 		}
-		public void insertUpdate(DocumentEvent e) {
+		/**
+		 * @param e 
+		 */
+		public void insertUpdate(final DocumentEvent e) {
 			warn(e);
 		}
-
-		public void warn(DocumentEvent e ) {
-			if (e.getDocument().getLength() == 1){
+		/**
+		 * @param e 
+		 */
+		public void warn(final DocumentEvent e) {
+			if (e.getDocument().getLength() == 1) {
 				startTime = System.currentTimeMillis();
 			}
 		}
 	}
 
-
+	/**
+	 * 
+	 * @author Patton Finley, Josh Crum, Pual Magee
+	 *
+	 */
 	private class ButtonListener implements ActionListener {
-
+		
+		/**
+		 * @param event 
+		 */
 		public void actionPerformed(final ActionEvent event) {
 
 			if (event.getSource() == enterButton) {
 
 				elapsedTime = System.currentTimeMillis();
-				long totalTime = (elapsedTime - startTime) / 1000;
+				long totalTime = (elapsedTime - startTime) / THOUSAND;
 
 				String entered = typeField.getText();
 				String s = checkAccuracy(entered, sentenceToType);
@@ -342,9 +489,9 @@ public class SpeedTyping {
 
 					}
 
-					if (totalTime <= 10) {
+					if (totalTime <= TEN) {
 						timeField.setBackground(Color.green);
-					} else if (totalTime <= 15) {
+					} else if (totalTime <= FIFTEEN) {
 						timeField.setBackground(Color.yellow);
 					} else {
 						timeField.setBackground(Color.red);
